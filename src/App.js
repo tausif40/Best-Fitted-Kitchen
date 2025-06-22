@@ -1,24 +1,24 @@
-import logo from './logo.svg';
 import './App.css';
+import { Toaster } from 'react-hot-toast';
+import UserLayout from './Components/layout/UserLayout';
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import HomePage from './Components/Home/HomePage';
 
 function App() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Toaster position="top-right" reverseOrder={true} />
+
+      <Routes>
+        <Route path="/" element={<UserLayout />}>
+          <Route index element={<HomePage />} />
+        </Route>
+      </Routes>
+    </>
   );
 }
 
