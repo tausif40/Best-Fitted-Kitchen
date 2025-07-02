@@ -5,6 +5,7 @@ import { Autoplay, Pagination } from 'swiper/modules'
 import { Navigation } from 'swiper/modules';
 import 'swiper/css'
 import 'swiper/css/pagination'
+import { EffectCards } from 'swiper/modules';
 
 const Hero = () => {
 	const [ images, setImages ] = useState([]);
@@ -71,9 +72,9 @@ const Hero = () => {
 					</div>
 				</div>
 
-				<div className='w-1/2 heroImage' >
+				<div className='w-1/2' >
 
-					<Swiper
+					{/* <Swiper
 						modules={[ Autoplay, Pagination, Navigation ]}
 						// spaceBetween={24}
 						// slidesPerView={1}
@@ -85,6 +86,19 @@ const Hero = () => {
 						// 	1024: { slidesPerView: 3 },
 						// }}
 						className=" mySwiper shadow bg-gray-500"
+					>
+						{images.map((img, index) => (
+							<SwiperSlide key={index} className=''>
+								<img src={img} alt="img" className='object-cover' />
+							</SwiperSlide>
+						))}
+					</Swiper> */}
+					<Swiper
+						effect={'cards'}
+						grabCursor={true}
+						modules={[ EffectCards, Autoplay ]}
+						autoplay={{ delay: 3000, disableOnInteraction: false }}
+						className="mySwiper w-4/5 p-20"
 					>
 						{images.map((img, index) => (
 							<SwiperSlide key={index} className=''>
