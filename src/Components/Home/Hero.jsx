@@ -1,7 +1,40 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { ArrowRight } from 'lucide-react';
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Autoplay, Pagination } from 'swiper/modules'
+import { Navigation } from 'swiper/modules';
+import 'swiper/css'
+import 'swiper/css/pagination'
 
 const Hero = () => {
+	const [ images, setImages ] = useState([]);
+
+	useEffect(() => {
+		const loadImages = async () => {
+			const imageFolderPath = '/assets/img/ourDesign/img';
+			const maxImages = 9;
+			const tempImages = [];
+
+			for (let i = 1; i <= maxImages; i++) {
+				const imgPath = `${imageFolderPath}${i}.jpg`;
+
+				try {
+					const response = await fetch(imgPath, { method: 'HEAD' });
+					if (response.ok) {
+						setImages([ ...tempImages ]);
+						tempImages.push(imgPath);
+					} else {
+						console.warn(`Image not found or error status: ${imgPath} - Status: ${response.status}`);
+					}
+				} catch (error) {
+					console.error(`Error fetching image ${imgPath}:`, error);
+				}
+			}
+		};
+
+		loadImages();
+	}, []);
+
 	return (
 		<section id="home" className="relative min-h-[90vh] flex items-center">
 			{/* Background Image */}
@@ -15,7 +48,7 @@ const Hero = () => {
 			</div>
 
 			{/* Content */}
-			<div className="container mx-auto px-4 relative z-10 flex justify-between">
+			<div className="container mx-auto px-4 relative z-10 flex justify-between items-center">
 				<div className="w-1/2 h-full">
 					<h1 className="text-3xl md:text-4xl text-white mb-6 leading-tight font-poppins space-y-4">
 						<p>WE PROVIDE ULTIMATE</p>
@@ -38,8 +71,29 @@ const Hero = () => {
 					</div>
 				</div>
 
-				<div className='w-1/2' >
-					<img src="https://images.pexels.com/photos/2089696/pexels-photo-2089696.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop" alt="" className='heroImage' />
+				<div className='w-1/2 heroImage' >
+
+					<Swiper
+						modules={[ Autoplay, Pagination, Navigation ]}
+						// spaceBetween={24}
+						// slidesPerView={1}
+						// navigation={true}
+						// pagination={{ dynamicBullets: true }}
+						autoplay={{ delay: 3000, disableOnInteraction: false }}
+						// breakpoints={{
+						// 	768: { slidesPerView: 2 },
+						// 	1024: { slidesPerView: 3 },
+						// }}
+						className=" mySwiper shadow bg-gray-500"
+					>
+						{images.map((img, index) => (
+							<SwiperSlide key={index} className=''>
+								<img src={img} alt="img" className='object-cover' />
+							</SwiperSlide>
+						))}
+					</Swiper>
+
+					{/* <img src="https://images.pexels.com/photos/2089696/pexels-photo-2089696.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop" alt="" className='heroImage' /> */}
 				</div>
 			</div >
 		</section>

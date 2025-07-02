@@ -91,25 +91,21 @@ const HomePageNav = () => {
 		<>
 			<header className="w-full  ">
 				{/* Top Bar */}
-				<div className='h-[80px] lg:h-0'></div>
+				<div className='h-[90px] lg:h-0'></div>
 				<div className={`bg-white lg:border-b-0 w-full fixed lg:static top-0 z-40 ${scrolled && 'border-b shadow-md'}`}>
 					<div className="container mx-auto px-4 py-2 flex items-center justify-between">
 						{/* Logo */}
 						<Link to={'/'} className="flex-shrink-0 mr-4">
 							<div className="flex items-center gap-2">
-								<img src="/assets/img/logos/icon.png" alt="Best Fitted Wardrobe " className="w-12 lg:w-16" />
-								<div className='text-2xl font-semibold font-poppins text-headingGray'>
-									<p>BEST FITTED</p>
-									<p>KITCHEN</p>
-								</div>
+								<img src="/assets/img/logos/icon.png" alt="Best Fitted Wardrobe " className="w-40 lg:w-48" />
 							</div>
 						</Link>
 
 						<div className="flex items-center flex-row-reverse lg:flex-row gap-10">
 							{/* Social Icons */}
-							<div className="xl:flex gap-x-6 hidden xl:block">
+							<div className="xl:flex gap-x-10 hidden xl:block">
 								{headerData.navigationLinks.map((link, index) => (
-									<Link key={index} to={link.link} className="text-text hover:text-[#46bfd2]">
+									<Link key={index} to={link.link} className={` hover:text-[#46bfd2] ${location.pathname === link.link ? "text-mySky " : "text-text"} font-raleway font-normal`}>
 										{link.title}
 									</Link>
 								))}
@@ -118,7 +114,7 @@ const HomePageNav = () => {
 					</div>
 				</div>
 
-				{/* <div className={`${navBarHide ? "fixed" : ""} scroll-smooth mx-auto px-10 h-20 w-full flex justify-between items-center z-50 duration-500 ${navBar ? "bg-[#726654]" : ""}`}> */}
+				{/* <div className={`${ navBarHide? "fixed": "" } scroll - smooth mx - auto px - 10 h - 20 w - full flex justify - between items - center z - 50 duration - 500 ${ navBar? "bg-[#726654]": "" }`}> */}
 
 				{/* </div> */}
 
