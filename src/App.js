@@ -8,6 +8,7 @@ import CategoryImages from './Components/Gallery/CategoryImages';
 import AboutUs from './Components/Pages/AboutUs';
 import Sale from './Components/Pages/Sale';
 import Contact from './Components/Pages/Contact';
+import HandlerKitchens from './Components/AllGalleryCategory/HandlerKitchens';
 
 function App() {
   const navigate = useNavigate();
@@ -25,6 +26,7 @@ function App() {
           <Route path="gallery" element={<Gallery />} />
           <Route path="sale" element={<Sale />} />
           <Route path="contact-us" element={<Contact />} />
+          <Route path="handle-kitchens" element={<HandlerKitchens />} />
           <Route path="gallery/:name" element={<CategoryImages />} />
         </Route>
       </Routes>

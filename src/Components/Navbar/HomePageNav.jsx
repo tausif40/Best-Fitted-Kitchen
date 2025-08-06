@@ -1,39 +1,28 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Mail, Phone, Search, Menu } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 import { BsInstagram } from "react-icons/bs";
 import { FaFacebookF } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { IoLogoGoogleplus } from "react-icons/io";
 import ClaimDesign from '../ClaimDesign/ClaimDesign';
 
-
 const HomePageNav = () => {
 	let location = useLocation();
-	const menuRef = useRef(null);
-	const [ isSearchOpen, setIsSearchOpen ] = useState(false);
-	const [ isMenuOpen, setIsMenuOpen ] = useState(false);
+	const dropdownRef = useRef(null);
+	const [ isDropdownOpen, setIsDropdownOpen ] = useState(false);
 	const [ scrolled, setScrolled ] = useState(false);
-	const [ menuHeight, setMenuHeight ] = useState(0);
 	const [ modalOpen, setModalOpen ] = useState(false);
-	useEffect(() => {
-		if (menuRef.current) {
-			setMenuHeight(isMenuOpen ? menuRef.current.scrollHeight : 0);
-		}
-	}, [ isMenuOpen ]);
-
-
-	const searchRef = useRef(null);
 
 	useEffect(() => {
-		function handleClickOutside(event) {
-			if (searchRef.current && !searchRef.current.contains(event.target)) {
-				setIsSearchOpen(false);
+		const handleOutsideClick = (event) => {
+			if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+				setIsDropdownOpen(false);
 			}
-		}
-		document.addEventListener('mousedown', handleClickOutside);
+		};
+		document.addEventListener('mousedown', handleOutsideClick);
 		return () => {
-			document.removeEventListener('mousedown', handleClickOutside);
+			document.removeEventListener('mousedown', handleOutsideClick);
 		};
 	}, []);
 
@@ -56,7 +45,6 @@ const HomePageNav = () => {
 			setTimeout(() => {
 				setModalOpen(true);
 			}, 30000);
-			// return () => clearTimeout(timer);
 		}
 	}, []);
 
@@ -71,69 +59,81 @@ const HomePageNav = () => {
 		navigationLinks: [
 			{ title: "HOME", link: "/" },
 			{ title: "ABOUT US", link: "/about-us" },
-			// { title: "WARDROBES", link: "/wardrobes" },
-			// { title: "SLIDING WARDROBES", link: "/sliding-wardrobes" },
-			// { title: "BUILT IN WARDROBES", link: "/built-in-wardrobes" },
-			// { title: "FITTED KITCHENS", link: "/fitted-kitchens" },
 			{ title: "SALE", link: "/sale" },
 			{ title: "GALLERY", link: "/gallery" },
 			{ title: "CONTACT US", link: "/contact-us" }
 		],
-		features: [
-			{ image: "/assets/img/icons/england.png", text: "Made in UK" },
-			{ image: "/assets/img/icons/bage.png", text: "10 Year Product Guarantee" },
-			{ image: "/assets/img/icons/asset5.png", text: "Soft Close Doors As Standard" },
-			{ image: "/assets/img/icons/hanger.png", text: "We fit wardrobes in less than 2-3 weeks" }
+		dropdownLinks: [
+			{ title: "Handle Kitchens", link: "/handle-kitchens" },
+			{ title: "J Pull Kitchens", link: "/j-pull-kitchens" },
+			{ title: "Profile Kitchens", link: "/Profile-kitchens" },
+			{ title: "Shaker style Kitchens", link: "/shaker-style-kitchens" }
 		]
 	};
 
 	return (
 		<>
-			<header className="w-full  ">
-				{/* Top Bar */}
+			<header className="w-full">
 				<div className='h-[90px] lg:h-0'></div>
 				<div className={`bg-white lg:border-b-0 w-full fixed lg:static top-0 z-40 ${scrolled && 'border-b shadow-md'}`}>
-					<div className="container mx-auto px-4 py-2 flex items-center justify-between">
-						{/* Logo */}
+					<div className="container !overflow-visible mx-auto px-4 py-2 flex items-center justify-between">
 						<Link to={'/'} className="flex-shrink-0 mr-4">
 							<div className="flex items-center gap-2">
-								<img src="/assets/img/logos/icon.png" alt="Best Fitted Wardrobe " className="w-40 lg:w-48" />
+								<img src="/assets/img/logos/icon.png" alt="Best Fitted Wardrobe" className="w-40 lg:w-48" />
 							</div>
 						</Link>
-
 						<div className="flex items-center flex-row-reverse lg:flex-row gap-10">
-							{/* Social Icons */}
 							<div className="xl:flex gap-x-10 hidden xl:block">
 								{headerData.navigationLinks.map((link, index) => (
-									<Link key={index} to={link.link} className={` hover:text-[#46bfd2] ${location.pathname === link.link ? "text-mySky " : "text-text"} font-raleway font-normal`}>
-										{link.title}
-									</Link>
+									<>
+										<Link
+											key={index}
+											to={link.link}
+											className={`hover:text-[#46bfd2] ${location.pathname === link.link ? "text-mySky" : "text-text"} font-raleway font-normal`}
+										>
+											{link.title}
+										</Link>
+
+										{
+											index === 2 &&
+											<div ref={dropdownRef} className="relative inline-block">
+												<button
+													onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+													className="flex items-center gap-1 text-text font-normal hover:text-[#46bfd2]"
+												>
+													ALL GALLERY CATEGORY
+													<ChevronDown className={`w-4 h-4 transform transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''}`} />
+												</button>
+												{isDropdownOpen && (
+													<div className="absolute left-0 top-full mt-2 border bg-white shadow-lg rounded-md z-50 min-w-[200px] py	-2">
+														<ul className="flex flex-col text-sm">
+															{headerData.dropdownLinks.map((item, index) => (
+																<li key={index}>
+																	<Link
+																		to={item.link}
+																		className="block px-4 py-2 hover:bg-gray-100"
+																	>
+																		{item.title}
+																	</Link>
+																</li>
+															))}
+														</ul>
+													</div>
+												)}
+											</div>
+										}
+
+									</>
+
 								))}
+
 							</div>
 						</div>
 					</div>
 				</div>
-
-				{/* <div className={`${ navBarHide? "fixed": "" } scroll - smooth mx - auto px - 10 h - 20 w - full flex justify - between items - center z - 50 duration - 500 ${ navBar? "bg-[#726654]": "" }`}> */}
-
-				{/* </div> */}
-
-				{/* Features Banner */}
-				{/* <div className='h-[45px]'></div> */}
-				{/* <div className="mx-auto md:py-2 bg-[#ffffff]">
-					<div className="container md:px-2 lg:px-16 xl:px-20 md:flex items-center justify-between gap-6 text-sm text-gray-600">
-						{headerData.features.map((feature, index) => (
-							<div key={index} className="flex items-center gap-2 md:gap-1 xl:gap-2 border-b md:border-b-0 p-2 md:p-0">
-								<img src={feature?.image} className="w-3 lg:w-3 xl:w-5" alt='img' />
-								<span className='text-xs lg:text-sm'>{feature.text}</span>
-							</div>
-						))}
-					</div>
-				</div> */}
 			</header>
-			{/* } */}
 		</>
 	);
 };
 
-export default HomePageNav
+export default HomePageNav;

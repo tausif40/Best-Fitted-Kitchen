@@ -37,7 +37,7 @@ const Hero = () => {
 	}, []);
 
 	return (
-		<section id="home" className="relative min-h-[90vh] flex items-center">
+		<section id="home" className="relative min-h-[90vh] flex items-center -z-10">	
 			{/* Background Image */}
 			<div
 				className="absolute inset-0 bg-cover bg-center bg-no-repeat"
