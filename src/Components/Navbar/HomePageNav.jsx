@@ -101,7 +101,7 @@ const HomePageNav = () => {
 													onClick={() => setIsDropdownOpen(!isDropdownOpen)}
 													className="flex items-center gap-1 text-text font-normal hover:text-[#46bfd2]"
 												>
-													ALL GALLERY CATEGORY
+													ALL CATEGORY
 													<ChevronDown className={`w-4 h-4 transform transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''}`} />
 												</button>
 												{isDropdownOpen && (
