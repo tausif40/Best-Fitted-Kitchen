@@ -13,17 +13,21 @@ function HomePage() {
 		<>
 			<Hero />
 
-			<section className=''>
-				<div className='container flex items-center py-6 my-16'>
-					<p className='text-4xl font-poppins min-w-[350px] border-r-2 '><span className='text-6xl text-green-300'>20</span> years Quality services </p>
-					<p className='pl-12'>With over 20 years of experience, we specialise in premium fitted kitchens, offering custom kitchen design, manufacturing, and professional kitchen installation services. Whether you're upgrading or starting fresh, our expert team ensures a smooth journey from concept to completion. Discover stunning, made-to-measure kitchens that combine innovative design, top craftsmanship, and everyday functionality—crafted to suit your space, lifestyle, and budget.</p>
+			<section>
+				<div className='container flex flex-col lg:flex-row items-center gap-6 py-6 my-16 px-4'>
+					<p className='text-2xl sm:text-3xl lg:text-4xl font-poppins border-b-2 lg:border-b-0 lg:border-r-2 pb-4 lg:pb-0 lg:min-w-[350px] text-center lg:text-left'>
+						<span className='text-4xl sm:text-5xl lg:text-6xl text-green-300'>20</span> years Quality services
+					</p>
+					<p className='lg:pl-12 text-center lg:text-left text-sm sm:text-base'>
+						With over 20 years of experience, we specialise in premium fitted kitchens, offering custom kitchen design, manufacturing, and professional kitchen installation services. Whether you're upgrading or starting fresh, our expert team ensures a smooth journey from concept to completion. Discover stunning, made-to-measure kitchens that combine innovative design, top craftsmanship, and everyday functionality—crafted to suit your space, lifestyle, and budget.
+					</p>
 				</div>
 			</section>
 
 			{/* About us */}
-			<section className="flex flex-col md:flex-row items-center justify-between pl-6 md:pl-32 bg-gray-50 mb-14">
+			<section className="flex flex-col xl:flex-row items-center justify-between gap-6 pl-6 xl:pl-32 bg-gray-50 mb-14">
 				{/* Left Content */}
-				<div className="w-full md:w-1/2 pr-20 py-6">
+				<div className="w-full xl:w-1/2 pr-6 xl:pr-20 py-6">
 					<h2 className="text-4xl font-bold text-black mb-4">ABOUT US</h2>
 					<p className="text-gray-600 mb-2">
 						Delivering Quality Fitted Kitchens for Over 20 Years
@@ -39,6 +43,16 @@ function HomePage() {
 					<p className="text-gray-600 mb-12 leading-relaxed">
 						With decades of experience in bespoke kitchen design and installation, we’ve earned a trusted name in the industry. Our team brings craftsmanship, innovation, and attention to detail to every kitchen project. Whether it’s a full kitchen renovation or a modern made-to-measure kitchen, we’re committed to transforming homes across the UK with functional, stylish solutions tailored to your needs.
 					</p>
+
+
+					{/* Right Image */}
+					<div className="w-full pb-12 full xl:hidden block">
+						<img
+							src="/assets/img/home/about.jpg"
+							alt="Modern Kitchen"
+							className="object-cover w-full h-[450px]"
+						/>
+					</div>
 
 					{/* Features */}
 					<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -67,7 +81,7 @@ function HomePage() {
 				</div>
 
 				{/* Right Image */}
-				<div className="w-full md:w-1/2">
+				<div className="w-full xl:w-1/2 hidden xl:block">
 					<img
 						src="/assets/img/home/about.jpg"
 						alt="Modern Kitchen"
@@ -99,14 +113,14 @@ function HomePage() {
 						<div className="flex flex-col items-center lg:items-end">
 							<FaStar className="text-mySky text-3xl mb-3" />
 							<h3 className="font-semibold text-lg mb-2">FREE DESIGN TOOLS</h3>
-							<p className="text-gray-600 max-w-sm text-center lg:text-right">
+							<p className="text-gray-600 max-w-lg text-center lg:text-right">
 								Use our free online tools to explore layouts, colours, and storage ideas. Create a kitchen that fits your style and start planning today.
 							</p>
 						</div>
 						<div className="flex flex-col items-center lg:items-end">
 							<FaCog className="text-mySky text-3xl mb-3" />
 							<h3 className="font-semibold text-lg mb-2">EXPERT INSTALLATION</h3>
-							<p className="text-gray-600 max-w-sm text-center lg:text-right">
+							<p className="text-gray-600 max-w-lg text-center lg:text-right">
 								Our certified team handles everything—from removing old fittings to precision installation—so your kitchen is ready to enjoy.
 							</p>
 						</div>
@@ -126,14 +140,14 @@ function HomePage() {
 						<div className="flex flex-col items-center lg:items-start">
 							<FaHeart className="text-mySky text-3xl mb-3" />
 							<h3 className="font-semibold text-lg mb-2">LOVELY SUPPORT</h3>
-							<p className="text-gray-600 max-w-sm text-center lg:text-left">
+							<p className="text-gray-600 max-w-lg text-center lg:text-left">
 								From consultation to aftercare, our friendly team guides you through every step for a smooth experience.
 							</p>
 						</div>
 						<div className="flex flex-col items-center lg:items-start">
 							<FaTachometerAlt className="text-mySky text-3xl mb-3" />
 							<h3 className="font-semibold text-lg mb-2">SPEED OPTIMIZED</h3>
-							<p className="text-gray-600 max-w-sm text-center lg:text-left">
+							<p className="text-gray-600 max-w-lg text-center lg:text-left">
 								We deliver and install kitchens quickly using efficient processes, without compromising on quality.
 							</p>
 						</div>
@@ -141,12 +155,18 @@ function HomePage() {
 				</div>
 			</section>
 
-			{/* Get a Professional Services, Call us Now */}
-			<section className='bg-primary py-16 px-10 my-16'>
-				<div className='container flex justify-between items-center text-text'>
-					<p className='text-4xl font-semibold'>Get a Professional Services, Call us Now</p>
-					<a href={`tel:01708756789`} className="min-w-max text-2xl font-semibold px-8 py-3 rounded-full bg-mySky text-white flex items-center gap-6"><Phone /> 01708 7 56789</a>
-
+			{/* Call to Action */}
+			<section className='bg-primary py-10 my-16'>
+				<div className='container flex flex-col lg:flex-row justify-between items-center gap-6 text-text text-center lg:text-left'>
+					<p className='text-2xl sm:text-3xl lg:text-4xl font-semibold'>
+						Get a Professional Services, Call us Now
+					</p>
+					<a
+						href={`tel:01708756789`}
+						className="min-w-max text-lg sm:text-xl font-semibold px-6 sm:px-8 py-3 rounded-full bg-mySky text-white flex items-center gap-4"
+					>
+						<Phone /> 01708 7 56789
+					</a>
 				</div>
 			</section>
 

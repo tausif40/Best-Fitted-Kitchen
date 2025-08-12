@@ -34,7 +34,7 @@ const About = () => {
 					</div>
 
 					{/* Text Content */}
-					<div className="w-full lg:w-1/2 space-y-6 mb-20">
+					<div className="w-full lg:w-1/2 space-y-6 mb-14 md:mb-20">
 						<h2 className="text-4xl md:text-5xl font-semibold text-center text-blue-900 uppercase">
 							About Us
 						</h2>
@@ -45,7 +45,7 @@ const About = () => {
 						<p className="text-gray-600 leading-relaxed">
 							Whether you’re renovating your current kitchen or designing one for a brand-new home, our team is here to guide you every step of the way. We offer a complete solution—free kitchen design consultations, custom manufacturing, and expert installation. Every kitchen we create is made-to-measure, ensuring a perfect fit for your lifestyle and space.</p>
 						{/* Contact Us Button and Phone Box */}
-						<div className="flex items-center gap-4 mt-6">
+						<div className="flex flex-col md:flex-row items-center gap-4 mt-6">
 							<Link href='/contact-us'>
 								<button className="bg-green-500 text-white px-6 py-3 rounded hover:bg-green-600">
 									Contact Us
