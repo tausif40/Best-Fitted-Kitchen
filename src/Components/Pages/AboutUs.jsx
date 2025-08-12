@@ -7,8 +7,8 @@ const About = () => {
 	return (
 		<div className="">
 			{/* Hero Section */}
-			<div className='min-h-[100px] max-h-[350px] w-full overflow-hidden bg-gray-300'>
-				<img src='/assets/img/kitchen.jpg' alt="Banner" className='object-bottom w-full' />
+			<div className='h-[400px] w-full overflow-hidden bg-gray-300'>
+				<img src='/assets/img/kitchen.jpg' alt="Banner" className='object-cover object-center w-full h-full' />
 			</div>
 
 			<div className="">
@@ -35,16 +35,15 @@ const About = () => {
 
 					{/* Text Content */}
 					<div className="w-full lg:w-1/2 space-y-6 mb-20">
-						<h2 className="text-4xl md:text-5xl font-semibold text-center text-blue-900 mb-12 uppercase">
+						<h2 className="text-4xl md:text-5xl font-semibold text-center text-blue-900 uppercase">
 							About Us
 						</h2>
+						<p className='text-center mb-12 text-lg font-semibold'>Crafting Beautiful Fitted Kitchens Across the UK for Over 20 Years</p>
 						<p className="text-gray-600 leading-relaxed">
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-							tristique faucibus, lorem tellus egestas turpis, vitae bibendum id
-							elementum Quisque sed urna sed nisl bibendum efficitu.
-							Suspendisse a rhoncus risus. Vivamus tempus, quam vehicula tristique
-							faucibus, lorem tellus egestas.
+							For more than two decades, we’ve been helping homeowners across the UK transform their houses into dream homes with high-quality, bespoke fitted kitchens. Built on craftsmanship, service, and attention to detail, our mission is simple: to deliver beautifully designed kitchens that combine style, function, and lasting durability.
 						</p>
+						<p className="text-gray-600 leading-relaxed">
+							Whether you’re renovating your current kitchen or designing one for a brand-new home, our team is here to guide you every step of the way. We offer a complete solution—free kitchen design consultations, custom manufacturing, and expert installation. Every kitchen we create is made-to-measure, ensuring a perfect fit for your lifestyle and space.</p>
 						{/* Contact Us Button and Phone Box */}
 						<div className="flex items-center gap-4 mt-6">
 							<Link href='/contact-us'>

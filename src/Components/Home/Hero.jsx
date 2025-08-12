@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { ArrowRight } from 'lucide-react';
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { Autoplay, Pagination } from 'swiper/modules'
-import { Navigation } from 'swiper/modules';
-import 'swiper/css'
-import 'swiper/css/pagination'
-import { EffectCards } from 'swiper/modules';
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import { Link } from 'react-router-dom';
 
 const Hero = () => {
 	const [ images, setImages ] = useState([]);
@@ -37,15 +36,15 @@ const Hero = () => {
 	}, []);
 
 	return (
-		<section id="home" className="relative min-h-[90vh] flex items-center -z-10">	
+		<section id="home" className="relative min-h-[90vh] flex items-center -z-10">
 			{/* Background Image */}
 			<div
 				className="absolute inset-0 bg-cover bg-center bg-no-repeat"
 				style={{
-					backgroundImage: "url('https://images.pexels.com/photos/2089696/pexels-photo-2089696.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop')"
+					backgroundImage: "url('/assets/img/home/homeBg.jpg')"
 				}}
 			>
-				<div className="absolute inset-0 bg-black bg-opacity-50"></div>
+				<div className="absolute inset-0 bg-gray-600 bg-opacity-5"></div>
 			</div>
 
 			{/* Content */}
@@ -74,40 +73,44 @@ const Hero = () => {
 
 				<div className='w-1/2' >
 
-					{/* <Swiper
-						modules={[ Autoplay, Pagination, Navigation ]}
-						// spaceBetween={24}
-						// slidesPerView={1}
-						// navigation={true}
-						// pagination={{ dynamicBullets: true }}
-						autoplay={{ delay: 3000, disableOnInteraction: false }}
-						// breakpoints={{
-						// 	768: { slidesPerView: 2 },
-						// 	1024: { slidesPerView: 3 },
-						// }}
-						className=" mySwiper shadow bg-gray-500"
-					>
-						{images.map((img, index) => (
-							<SwiperSlide key={index} className=''>
-								<img src={img} alt="img" className='object-cover' />
-							</SwiperSlide>
-						))}
-					</Swiper> */}
-					<Swiper
-						effect={'cards'}
-						grabCursor={true}
-						modules={[ EffectCards, Autoplay ]}
-						autoplay={{ delay: 3000, disableOnInteraction: false }}
-						className="mySwiper w-4/5 p-20"
-					>
-						{images.map((img, index) => (
-							<SwiperSlide key={index} className=''>
-								<img src={img} alt="img" className='object-cover' />
-							</SwiperSlide>
-						))}
-					</Swiper>
+					<div className="max-w-lg mx-auto bg-gradient-to-br from-[#d6dd52] to-[#45c0d0] rounded-2xl shadow-2xl overflow-hidden ">
+						<div className="p-6 text-center text-white">
+							<h2 className="text-2xl font-bold tracking-wide drop-shadow-md text-blue-800">
+								🌟 Beautiful Kitchens Gallery 🌟
+							</h2>
+						</div>
 
-					{/* <img src="https://images.pexels.com/photos/2089696/pexels-photo-2089696.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop" alt="" className='heroImage' /> */}
+						<div className='px-4 pb-2'>
+							<Swiper
+								modules={[ Navigation, Autoplay ]}
+								navigation
+								autoplay={{ delay: 2500, disableOnInteraction: false }}
+								loop={true}
+								className="rounded-lg overflow-hidden"
+							>
+								{images.map((src, idx) => (
+									<SwiperSlide key={idx}>
+										<img
+											src={src}
+											alt={`Slide ${idx}`}
+											className="w-full h-64 object-cover transition-transform duration-500 hover:scale-105"
+										/>
+									</SwiperSlide>
+								))}
+							</Swiper>
+						</div>
+						<div className="p-4 flex justify-center bg-white">
+							<Link to='/gallery'>
+								<button
+									onClick={() => alert("Gallery clicked!")}
+									className="px-6 py-2 rounded-full font-semibold text-white bg-blue-800 shadow-lg hover:scale-105 transition-transform"
+								>
+									Show Gallery
+								</button>
+							</Link>
+						</div>
+					</div>
+
 				</div>
 			</div >
 		</section>

@@ -1,19 +1,19 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, Menu, X } from 'lucide-react';
 import { BsInstagram } from "react-icons/bs";
 import { FaFacebookF } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { IoLogoGoogleplus } from "react-icons/io";
-import ClaimDesign from '../ClaimDesign/ClaimDesign';
 
 const HomePageNav = () => {
 	let location = useLocation();
 	const dropdownRef = useRef(null);
 	const [ isDropdownOpen, setIsDropdownOpen ] = useState(false);
 	const [ scrolled, setScrolled ] = useState(false);
-	const [ modalOpen, setModalOpen ] = useState(false);
+	const [ mobileMenuOpen, setMobileMenuOpen ] = useState(false);
 
+	// Close dropdown when clicking outside
 	useEffect(() => {
 		const handleOutsideClick = (event) => {
 			if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -21,41 +21,26 @@ const HomePageNav = () => {
 			}
 		};
 		document.addEventListener('mousedown', handleOutsideClick);
-		return () => {
-			document.removeEventListener('mousedown', handleOutsideClick);
-		};
+		return () => document.removeEventListener('mousedown', handleOutsideClick);
 	}, []);
 
+	// Handle scroll effect for header shadow
 	useEffect(() => {
-		const handleScroll = () => {
-			if (window.scrollY >= 80) {
-				setScrolled(true);
-			} else {
-				setScrolled(false);
-			}
-		};
+		const handleScroll = () => setScrolled(window.scrollY >= 80);
 		window.addEventListener('scroll', handleScroll);
-		return () => {
-			window.removeEventListener('scroll', handleScroll);
-		};
+		return () => window.removeEventListener('scroll', handleScroll);
 	}, []);
 
+	// Lock body scroll when mobile menu is open
 	useEffect(() => {
-		if (!modalOpen) {
-			setTimeout(() => {
-				setModalOpen(true);
-			}, 30000);
+		if (mobileMenuOpen) {
+			document.body.style.overflow = 'hidden';
+		} else {
+			document.body.style.overflow = '';
 		}
-	}, []);
+	}, [ mobileMenuOpen ]);
 
 	const headerData = {
-		contactInfo: { phone: "01708 7 56789", email: "info@bestfittedwardrobe.co.uk" },
-		socialLinks: [
-			{ platform: FaFacebookF, link: "https://www.facebook.com/BestfittedWardrobeltd" },
-			{ platform: FaXTwitter, link: "https://x.com" },
-			{ platform: IoLogoGoogleplus, link: "#" },
-			{ platform: BsInstagram, link: "https://www.instagram.com/bestfittedwardrobe" }
-		],
 		navigationLinks: [
 			{ title: "HOME", link: "/" },
 			{ title: "ABOUT US", link: "/about-us" },
@@ -66,73 +51,130 @@ const HomePageNav = () => {
 		dropdownLinks: [
 			{ title: "Handle Kitchens", link: "/handle-kitchens" },
 			{ title: "J Pull Kitchens", link: "/j-pull-kitchens" },
-			{ title: "Profile Kitchens", link: "/Profile-kitchens" },
+			{ title: "Profile Kitchens", link: "/profile-kitchens" },
 			{ title: "Shaker style Kitchens", link: "/shaker-style-kitchens" }
 		]
 	};
 
 	return (
-		<>
-			<header className="w-full">
-				<div className='h-[90px] lg:h-0'></div>
-				<div className={`bg-white lg:border-b-0 w-full fixed lg:static top-0 z-40 ${scrolled && 'border-b shadow-md'}`}>
-					<div className="container !overflow-visible mx-auto px-4 py-2 flex items-center justify-between">
-						<Link to={'/'} className="flex-shrink-0 mr-4">
-							<div className="flex items-center gap-2">
-								<img src="/assets/img/logos/icon.png" alt="Best Fitted Wardrobe" className="w-40 lg:w-48" />
-							</div>
-						</Link>
-						<div className="flex items-center flex-row-reverse lg:flex-row gap-10">
-							<div className="xl:flex gap-x-10 hidden xl:block">
-								{headerData.navigationLinks.map((link, index) => (
-									<>
-										<Link
-											key={index}
-											to={link.link}
-											className={`hover:text-[#46bfd2] ${location.pathname === link.link ? "text-mySky" : "text-text"} font-raleway font-normal`}
+		<header className="w-full">
+			<div className={`bg-white lg:border-b-0 w-full fixed lg:static top-0 z-40 ${scrolled && 'border-b shadow-md'}`}>
+				<div className="container !overflow-visible mx-auto px-4 py-2 flex items-center justify-between">
+					{/* Logo */}
+					<Link to="/" className="flex-shrink-0">
+						<img src="/assets/img/logos/icon.png" alt="Best Fitted Wardrobe" className="w-40 lg:w-48" />
+					</Link>
+
+					{/* Desktop Nav */}
+					<nav className="hidden lg:flex gap-8 items-center">
+						{headerData.navigationLinks.map((link, index) => (
+							<React.Fragment key={index}>
+								<Link
+									to={link.link}
+									className={`hover:text-[#46bfd2] ${location.pathname === link.link ? "text-mySky" : "text-text"} font-raleway font-normal`}
+								>
+									{link.title}
+								</Link>
+
+								{index === 2 && (
+									<div ref={dropdownRef} className="relative">
+										<button
+											onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+											className="flex items-center gap-1 text-text font-normal hover:text-[#46bfd2]"
 										>
-											{link.title}
-										</Link>
-
-										{
-											index === 2 &&
-											<div ref={dropdownRef} className="relative inline-block">
-												<button
-													onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-													className="flex items-center gap-1 text-text font-normal hover:text-[#46bfd2]"
-												>
-													ALL CATEGORY
-													<ChevronDown className={`w-4 h-4 transform transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''}`} />
-												</button>
-												{isDropdownOpen && (
-													<div className="absolute left-0 top-full mt-2 border bg-white shadow-lg rounded-md z-50 min-w-[200px] py	-2">
-														<ul className="flex flex-col text-sm">
-															{headerData.dropdownLinks.map((item, index) => (
-																<li key={index}>
-																	<Link
-																		to={item.link}
-																		className="block px-4 py-2 hover:bg-gray-100"
-																	>
-																		{item.title}
-																	</Link>
-																</li>
-															))}
-														</ul>
-													</div>
-												)}
+											ALL CATEGORY
+											<ChevronDown className={`w-4 h-4 transform transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
+										</button>
+										{isDropdownOpen && (
+											<div className="absolute left-0 top-full mt-2 border bg-white shadow-lg rounded-md z-50 min-w-[200px] py-2">
+												{headerData.dropdownLinks.map((item, idx) => (
+													<Link
+														key={idx}
+														to={item.link}
+														className="block px-4 py-2 hover:bg-gray-100"
+													>
+														{item.title}
+													</Link>
+												))}
 											</div>
-										}
+										)}
+									</div>
+								)}
+							</React.Fragment>
+						))}
+					</nav>
 
-									</>
-
-								))}
-
-							</div>
-						</div>
-					</div>
+					{/* Mobile Hamburger */}
+					<button className="lg:hidden" onClick={() => setMobileMenuOpen(true)}>
+						<Menu size={28} />
+					</button>
 				</div>
-			</header>
-		</>
+			</div>
+
+			{/* Mobile Menu Overlay */}
+			<div
+				className={`fixed top-0 right-0 h-full w-64 bg-white/85 shadow-lg z-50 transform transition-transform duration-300 ease-in-out ${mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+					}`}
+			>
+				<div className="flex justify-between items-center px-4 py-3 border-b">
+					<span className="font-bold">Menu</span>
+					<button onClick={() => setMobileMenuOpen(false)}>
+						<X size={28} />
+					</button>
+				</div>
+
+				<div className="flex flex-col px-4 py-4 space-y-4 overflow-y-auto h-full">
+					{headerData.navigationLinks.map((link, index) => (
+						<React.Fragment key={index}>
+							<Link
+								to={link.link}
+								className={`block hover:text-[#46bfd2] ${location.pathname === link.link ? "text-mySky" : "text-text"} font-raleway`}
+								onClick={() => setMobileMenuOpen(false)}
+							>
+								{link.title}
+							</Link>
+
+							{index === 2 && (
+								<div>
+									<button
+										onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+										className="flex items-center gap-1 text-text font-normal hover:text-[#46bfd2]"
+									>
+										ALL CATEGORY
+										<ChevronDown className={`w-4 h-4 transform transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
+									</button>
+									{isDropdownOpen && (
+										<div className="pl-4 mt-2 space-y-2">
+											{headerData.dropdownLinks.map((item, idx) => (
+												<Link
+													key={idx}
+													to={item.link}
+													className="block text-sm hover:text-[#46bfd2]"
+													onClick={() => {
+														setIsDropdownOpen(false);
+														setMobileMenuOpen(false);
+													}}
+												>
+													{item.title}
+												</Link>
+											))}
+										</div>
+									)}
+								</div>
+							)}
+						</React.Fragment>
+					))}
+				</div>
+			</div>
+
+			{/* Dark overlay background when menu is open */}
+			{mobileMenuOpen && (
+				<div
+					className="fixed inset-0 bg-black bg-opacity-50 z-40"
+					onClick={() => setMobileMenuOpen(false)}
+				></div>
+			)}
+		</header>
 	);
 };
 

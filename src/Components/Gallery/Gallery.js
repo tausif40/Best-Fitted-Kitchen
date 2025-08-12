@@ -23,8 +23,8 @@ const Gallery = () => {
 
 	return (
 		<>
-			<div className='min-h-[400px] max-h-[400px] bg-no-repeat object-cover bg-bottom w-full overflow-hidden bg-gray-300' style={{ backgroundImage: "url('/assets/img/white.png')" }}>
-				{/* <img src='/assets/img/white.png' alt="Banner" className='w-full' /> */}
+			<div className='h-[400px] w-full overflow-hidden bg-gray-300'>
+				<img src='/assets/img/lotus-design.jpg' alt="Banner" className='object-cover object-center w-full h-full' />
 			</div>
 
 			<div className="">

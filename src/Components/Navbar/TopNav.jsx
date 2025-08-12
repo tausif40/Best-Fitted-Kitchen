@@ -24,10 +24,10 @@ function TopNav() {
 		<>
 			<ClaimDesign isOpen={modalOpen} onClose={() => setModalOpen(false)} />
 			<nav className="bg-gray-200">
-				<div className="container flex justify-between gap-10">
+				<div className="container max-sm:pl-2 max-sm:pr-0 flex justify-between gap-10">
 
 					{/* Contact Info */}
-					<div className="md:flex items-center gap-4 xl:gap-8 text-heading font-sans text-base	">
+					<div className="flex items-center gap-4 xl:gap-8 text-heading font-sans text-base	">
 						<div className="flex items-center gap-2 ">
 							{/* <p className='bg-gray-100 rounded-full p-3'>
 							</p> */}
@@ -44,7 +44,7 @@ function TopNav() {
 						</div>
 
 						{/* Social Icons */}
-						<div className="xl:flex gap-x-8 hidden xl:block">
+						<div className="xl:flex gap-x-8 hidden">
 							{headerData.socialLinks.map((social, index) => (
 								<Link key={index} to={social.link} className="flex items-center justify-center " target='_blank'>
 									{<social.platform className="h-4 w-4 text-gray-600 hover:text-[#6BC7D9]" />}

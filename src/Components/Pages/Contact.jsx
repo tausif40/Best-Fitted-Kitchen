@@ -61,8 +61,8 @@ export default function Contact() {
 	return (
 		<section id="contact" className=" bg-white">
 
-			<div className='min-h-[100px] max-h-[350px] w-full overflow-hidden bg-gray-300'>
-				<img src='/assets/img/kitchen.jpg' alt="Banner" className='object-bottom w-full' />
+			<div className='h-[400px] w-full overflow-hidden bg-gray-300'>
+				<img src='/assets/img/contact-Banner.jpg' alt="Banner" className='object-cover object-center w-full h-full' />
 			</div>
 
 			<div className="container mx-auto pt-20">
