@@ -38,13 +38,14 @@ const Hero = () => {
 	return (
 		<section id="home" className="relative min-h-[90vh] flex items-center -z-10">
 			{/* Background Image */}
+			{/* bg-gray-300 bg-opacity-5 */}
 			<div
 				className="absolute inset-0 bg-cover bg-center bg-no-repeat"
 				style={{
 					backgroundImage: "url('/assets/img/home/homeBg.jpg')"
 				}}
 			>
-				<div className="absolute inset-0 bg-gray-600 bg-opacity-5"></div>
+				<div className="absolute inset-0 "></div>
 			</div>
 
 			{/* Content */}
@@ -72,7 +73,6 @@ const Hero = () => {
 				</div>
 
 				<div className='w-1/2' >
-
 					<div className="max-w-lg mx-auto bg-gradient-to-br from-[#d6dd52] to-[#45c0d0] rounded-2xl shadow-2xl overflow-hidden ">
 						<div className="p-6 text-center text-white">
 							<h2 className="text-2xl font-bold tracking-wide drop-shadow-md text-blue-800">
@@ -112,6 +112,7 @@ const Hero = () => {
 					</div>
 
 				</div>
+
 			</div >
 		</section>
 	);
