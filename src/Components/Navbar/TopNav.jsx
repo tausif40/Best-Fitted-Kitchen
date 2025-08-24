@@ -23,41 +23,41 @@ function TopNav() {
 	return (
 		<>
 			<ClaimDesign isOpen={modalOpen} onClose={() => setModalOpen(false)} />
-			<nav className="bg-gray-200">
+			<nav className="bg-gray-50 py-2">
 				<div className="container max-sm:pl-2 max-sm:pr-0 flex justify-between gap-10">
 
 					{/* Contact Info */}
-					<div className="flex items-center gap-4 xl:gap-8 text-heading font-sans text-base	">
+					<div className="flex items-center gap-4 xl:gap-8 font-sans text-base	">
 						<div className="flex items-center gap-2 ">
 							{/* <p className='bg-gray-100 rounded-full p-3'>
 							</p> */}
-							<Phone className="h-4 w-4 text-[#5d8dcb]" />
+							<Phone className="h-4 w-4 text-mySky" />
 							<a href={`tel:${headerData.contactInfo.phone}`} className="min-w-max">{headerData.contactInfo.phone}</a>
 						</div>
 						<div className="hidden lg:block">
 							<div className="flex items-center gap-2">
 								{/* <p className='bg-gray-100 rounded-full p-3'>
 								</p> */}
-								<Mail className="h-4 w-4 text-[#5d8dcb] " />
-								<a href={`mailto:${headerData.contactInfo.email}`} className="hover:text-heading">{headerData.contactInfo.email}</a>
+								<Mail className="h-4 w-4 text-mySky " />
+								<a href={`mailto:${headerData.contactInfo.email}`} className="text-headingGray">{headerData.contactInfo.email}</a>
 							</div>
-						</div>
-
-						{/* Social Icons */}
-						<div className="xl:flex gap-x-8 hidden">
-							{headerData.socialLinks.map((social, index) => (
-								<Link key={index} to={social.link} className="flex items-center justify-center " target='_blank'>
-									{<social.platform className="h-4 w-4 text-gray-600 hover:text-[#6BC7D9]" />}
-								</Link>
-							))}
 						</div>
 					</div>
 
-					<button className="flex cursor-pointer items-center justify-center overflow-hidden" onClick={() => setModalOpen(true)}>
+					{/* Social Icons */}
+					<div className="xl:flex gap-x-8 hidden">
+						{headerData.socialLinks.map((social, index) => (
+							<Link key={index} to={social.link} className="flex items-center justify-center " target='_blank'>
+								{<social.platform className="h-4 w-4 text-gray-600 hover:text-[#6BC7D9]" />}
+							</Link>
+						))}
+					</div>
+
+					{/* <button className="flex cursor-pointer items-center justify-center overflow-hidden" onClick={() => setModalOpen(true)}>
 						<span className=" btnSpan relative z-10 w-full bg-primary px-4 py-3 text-sm lg:text-base text-sky-800 backdrop-blur-[40px] min-w-max">
 							Claim your free design
 						</span>
-					</button>
+					</button> */}
 				</div>
 			</nav>
 		</>

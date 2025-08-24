@@ -36,11 +36,11 @@ const HomePageNav = () => {
 
 	const headerData = {
 		navigationLinks: [
-			{ title: 'HOME', link: '/' },
-			{ title: 'ABOUT US', link: '/about-us' },
-			{ title: 'SALE', link: '/sale' },
-			{ title: 'GALLERY', link: '/gallery' },
-			{ title: 'CONTACT US', link: '/contact-us' }
+			{ title: 'Home', link: '/' },
+			{ title: 'About us', link: '/about-us' },
+			{ title: 'Sale', link: '/sale' },
+			{ title: 'Gallery', link: '/gallery' },
+			{ title: 'Contact us', link: '/contact-us' }
 		],
 		dropdownLinks: [
 			{ title: 'Handle Kitchens', link: '/handle-kitchens' },
@@ -62,7 +62,7 @@ const HomePageNav = () => {
 						<img
 							src="/assets/img/logos/icon.png"
 							alt="Best Fitted Wardrobe"
-							className="w-40 lg:w-48"
+							className="w-36 lg:w-36"
 						/>
 					</Link>
 
@@ -70,13 +70,8 @@ const HomePageNav = () => {
 					<nav className="hidden lg:flex gap-8 items-center">
 						{headerData.navigationLinks.map((link, index) => (
 							<React.Fragment key={index}>
-								<Link
-									to={link.link}
-									className={`hover:text-[#46bfd2] ${location.pathname === link.link
-											? 'text-mySky'
-											: 'text-text'
-										} font-raleway font-normal`}
-								>
+								<Link to={link.link}
+									className={`hover:text-[#46bfd2] ${location.pathname === link.link ? 'text-mySky' : 'text-text'} font-normal`}>
 									{link.title}
 								</Link>
 
@@ -88,7 +83,7 @@ const HomePageNav = () => {
 											}
 											className="flex items-center gap-1 text-text font-normal hover:text-[#46bfd2]"
 										>
-											ALL CATEGORY
+											All Category
 											<ChevronDown
 												className={`w-4 h-4 transform transition-transform ${isDesktopDropdownOpen ? 'rotate-180' : ''
 													}`}
@@ -100,7 +95,7 @@ const HomePageNav = () => {
 													<Link
 														key={idx}
 														to={item.link}
-														className="block px-4 py-2 hover:bg-gray-100"
+														className="block px-4 py-2 text-text hover:bg-gray-100"
 													>
 														{item.title}
 													</Link>
@@ -146,8 +141,8 @@ const HomePageNav = () => {
 							<Link
 								to={link.link}
 								className={`block hover:text-[#46bfd2] ${location.pathname === link.link
-										? 'text-mySky'
-										: 'text-text'
+									? 'text-mySky'
+									: 'text-text'
 									} font-raleway`}
 								onClick={() => {
 									setMobileMenuOpen(false);
