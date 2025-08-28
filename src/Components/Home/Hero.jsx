@@ -38,7 +38,7 @@ const Hero = () => {
 				</div>
 			</div>
 
-			<div className="absolute w-[95%] lg:w-auto flex flex-wrap lg:flex-row items-center justify-between gap-6 lg:gap-16 text-sm text-gray-600 py-6 px-12 shadow-md rounded-[4rem] sm:rounded-full border-t bottom-0 md:bottom-8 lg:bottom-10 bg-white">
+			<div className="absolute w-[95%] lg:w-auto flex flex-wrap lg:flex-row items-center -md:justify-between gap-6 lg:gap-16 text-sm text-gray-600 py-6 px-12 shadow-md rounded-[4rem] sm:rounded-full border-t bottom-0 md:bottom-8 lg:bottom-10 bg-white">
 				<div>
 					<h5 className='font-semibold mb-2 min-w-max'>Comfort</h5>
 					<div className="flex items-center gap-2">
@@ -61,7 +61,7 @@ const Hero = () => {
 					</div>
 				</div>
 				<div className='h-12 w-px bg-slate-200 hidden lg:block'></div>
-				<div className='w-full flex gap-12 justify-center'>
+				<div className='-md:w-full flex gap-12 justify-center'>
 					<div>
 						<h5 className='font-semibold mb-2 min-w-max'>Secure checkout</h5>
 						<div className="flex items-center gap-2">

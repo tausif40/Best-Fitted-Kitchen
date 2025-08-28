@@ -9,6 +9,9 @@ import AboutUs from './Components/Pages/AboutUs';
 import Sale from './Components/Pages/Sale';
 import Contact from './Components/Pages/Contact';
 import HandlerKitchens from './Components/AllGalleryCategory/HandlerKitchens';
+import JPullKitchens from './Components/AllGalleryCategory/JPullKitchens';
+import ProfileKitchens from './Components/AllGalleryCategory/ProfileKitchens';
+import ShakerStyleKitchens from './Components/AllGalleryCategory/ShakerStyleKitchens';
 
 function App() {
   const navigate = useNavigate();
@@ -27,6 +30,9 @@ function App() {
           <Route path="sale" element={<Sale />} />
           <Route path="contact-us" element={<Contact />} />
           <Route path="handle-kitchens" element={<HandlerKitchens />} />
+          <Route path="j-pull-kitchens" element={<JPullKitchens />} />
+          <Route path="profile-kitchens" element={<ProfileKitchens />} />
+          <Route path="shaker-style-kitchens" element={<ShakerStyleKitchens />} />
           <Route path="gallery/:name" element={<CategoryImages />} />
         </Route>
       </Routes>

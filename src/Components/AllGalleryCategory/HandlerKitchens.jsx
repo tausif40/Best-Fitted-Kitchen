@@ -1,34 +1,6 @@
-import React, { useEffect, useMemo, useState } from 'react'
-import CTA from '../CTA/CTA'
-import Footer from '../Footer/Footer'
-import TopNav from '../Navbar/TopNav'
-import HomePageNav from '../Navbar/HomePageNav'
-import { HardHat, ChefHat, Tag, Home, Star, Award, CheckCircle2, Search, Filter, Mail, Phone, Hammer, Ruler, Truck, Brush, BookOpen, Leaf } from 'lucide-react'
-import { Link } from 'react-router-dom'
-
-// --- Data ---
-const kitchenProducts = [
-	{ id: 1, name: 'The Camberley Kitchen', series: 'Black Series', image: '/assets/placeholder.svg', price: 12999, featured: true, tags: [ 'Black Series', 'Modern' ] },
-	{ id: 3, name: 'Matt Black', series: 'Black Series', image: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1600&q=80', price: 9999, featured: true, tags: [ 'Black Series' ] },
-	{ id: 4, name: 'Classic Emerald', series: 'Natural Lines', image: '/assets/placeholder.svg', price: 10999, featured: false, tags: [ 'Natural Lines' ] },
-	{ id: 7, name: 'Scandi Minimal', series: 'Minimal Collection', image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80', price: 7499, featured: false, tags: [ 'Minimal' ] },
-	{ id: 5, name: 'White & Drip', series: 'Woody Series', image: '/assets/placeholder.svg', price: 7999, featured: false, tags: [ 'Woody Series' ] },
-	{ id: 6, name: 'Modern Cappuccino', series: 'Woody Series', image: 'https://images.unsplash.com/photo-1528909514045-2fa4ac7a08ba?auto=format&fit=crop&w=1600&q=80', price: 11999, featured: false, tags: [ 'Woody Series', 'Modern' ] },
-]
-
-const features = [
-	{ icon: HardHat, title: 'Expert Craftsmanship', desc: 'A seasoned team of designers and fitters focused on long-lasting quality.' },
-	{ icon: ChefHat, title: 'Functional by Design', desc: 'Layouts that make cooking joyful, efficient and beautiful.' },
-	{ icon: Tag, title: 'Personalized Quotes', desc: 'Transparent pricing and tailored proposals for your budget.' },
-	{ icon: CheckCircle2, title: 'Aftercare & Warranty', desc: '1-year installation warranty and easy aftercare support.' }
-]
-
-const processStep = [
-	{ icon: Phone, title: 'Free Consultation', desc: 'Discuss your needs with our expert design team at no cost.' },
-	{ icon: Ruler, title: 'Measurement & Design', desc: 'We measure your space and create 3D kitchen designs.' },
-	{ icon: Hammer, title: 'Manufacturing', desc: 'Custom build with premium materials and attention to detail.' },
-	{ icon: Truck, title: 'Delivery & Installation', desc: 'Hassle-free installation by our trained professionals.' }
-]
+import React, { useState } from "react";
+import { CheckCircle, Star, Phone, Hammer, Ruler, Truck, Sparkles, Layers, ThumbsUp } from "lucide-react";
+import OurDesign from "../Home/OurDesign";
 
 const processSteps = [
 	{ icon: Phone, title: 'Free Consultation', desc: 'Discuss your needs with our expert design team at no cost.', extra: 'We’ll guide you through styles, finishes, and layouts to match your vision.' },
@@ -36,20 +8,6 @@ const processSteps = [
 	{ icon: Hammer, title: 'Manufacturing', desc: 'Custom build with premium materials and attention to detail.', extra: 'Every unit is crafted with precision and durability in mind.' },
 	{ icon: Truck, title: 'Delivery & Installation', desc: 'Hassle-free installation by our trained professionals.', extra: 'We ensure everything is perfectly fitted and ready for use.' }
 ];
-
-const materials = [
-	{ name: 'Solid Wood', image: '/assets/placeholder.svg', desc: 'Rich grains, timeless durability.' },
-	{ name: 'Laminate', image: '/assets/placeholder.svg', desc: 'Affordable, versatile finishes.' },
-	{ name: 'Quartz', image: 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=800&q=80', desc: 'Scratch-resistant, elegant surfaces.' },
-	{ name: 'Eco-friendly Plywood', image: '/assets/placeholder.svg', desc: 'Sustainable and sturdy core.' }
-]
-
-const testimonials = [
-	{ id: 1, name: 'Asha K.', quote: 'Transformed our tiny kitchen into a magazine-worthy space. Timely and professional!', rating: 5 },
-	{ id: 2, name: 'Rahul S.', quote: 'Excellent design sense — compact, smart, and beautiful.', rating: 5 },
-	{ id: 3, name: 'Meera P.', quote: 'Loved the sustainable material choices and finish quality.', rating: 5 }
-]
-
 const faqs = [
 	{ q: 'Do you provide free on-site consultation?', a: 'Yes — we provide a complimentary initial consultation to understand your needs and space.' },
 	{ q: 'What is the typical project timeline?', a: 'Most kitchens complete within 4–8 weeks depending on scope and custom items.' },
@@ -58,72 +16,119 @@ const faqs = [
 	{ q: 'Do you provide warranty?', a: 'We offer a 1-year installation warranty and support for all hardware.' }
 ]
 
-// --- Utility ---
-function useAutoCarousel(length, interval = 4000) {
-	const [ index, setIndex ] = useState(0)
-	useEffect(() => {
-		const t = setInterval(() => setIndex(i => (i + 1) % length), interval)
-		return () => clearInterval(t)
-	}, [ length, interval ])
-	return [ index, setIndex ]
-}
-
-export default function KitchensPremium() {
-	const [ query, setQuery ] = useState('')
-	const [ activeTag, setActiveTag ] = useState('All')
-	const [ sort, setSort ] = useState('featured')
-	const [ selectedProduct, setSelectedProduct ] = useState(null)
+export default function HandlerKitchens() {
 	const [ faqOpen, setFaqOpen ] = useState(null)
-	const [ testiIndex ] = useAutoCarousel(testimonials.length, 4500)
-
-	const allTags = useMemo(() => [ 'All', ...new Set(kitchenProducts.flatMap(p => p.tags)) ], [])
-
-	const filtered = useMemo(() => {
-		let list = kitchenProducts
-		if (activeTag !== 'All') list = list.filter(p => p.tags.includes(activeTag))
-		if (query.trim()) list = list.filter(p => (p.name + ' ' + p.series).toLowerCase().includes(query.toLowerCase()))
-		if (sort === 'price-asc') list = [ ...list ].sort((a, b) => a.price - b.price)
-		if (sort === 'price-desc') list = [ ...list ].sort((a, b) => b.price - a.price)
-		if (sort === 'featured') list = [ ...list ].sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0))
-		return list
-	}, [ activeTag, query, sort ])
 
 	return (
-		<div className="min-h-screen font-sans text-gray-900 bg-white">
-			{/* HERO */}
-			<header className="relative h-screen bg-cover bg-center" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=1600&q=80')" }}>
-				<div className="absolute inset-0 bg-black/60" />
-				<div className="relative z-10 flex flex-col items-center justify-center h-full px-6 text-center">
-					<h1 className="text-5xl md:text-6xl font-bold text-white drop-shadow-lg">Design-led Kitchens — Built to Last</h1>
-					<p className="mt-4 text-lg md:text-xl text-gray-200 max-w-2xl">Handcrafted cabinets, smart storage, and sustainable materials. From concept to completion.</p>
-					<div className="mt-6 flex flex-col sm:flex-row gap-4">
-						<p className="bg-teal-400 hover:bg-teal-500 text-black px-6 py-3 rounded-full font-semibold transition">Get a Free Quote</p>
-						<Link to="/gallery" className="border border-white/30 text-white hover:bg-white/10 px-6 py-3 rounded-full transition">Explore Gallery </Link>
-					</div>
-					<div className="mt-8 flex gap-6 text-sm text-gray-300">
-						<span className="flex items-center gap-2"><Award className="w-5 h-5" /> 8+ Years Experience</span>
-						{/* <span className="flex items-center gap-2"><Star className="w-5 h-5" /> 4.9/5 Rating</span> */}
-					</div>
+		<div className="font-sans text-[#444]">
+			{/* Hero Section */}
+			<section className="relative text-white py-32 px-6 text-center overflow-hidden">
+				{/* Background image */}
+				<div className="absolute inset-0">
+					<img
+						src="/assets/img/galleryCategory/hero.jpg"
+						alt="Kitchen Background"
+						className="w-full h-full object-cover"
+					/>
+					{/* Gradient overlay */}
+					<div className="absolute inset-0 bg-gradient-to-r from-[#013d8e]/40 via-[#4dd0e1]/40 to-[#dce775]/40"></div>
+					{/* <div className="absolute inset-0 bg-gradient-to-r from-[#013d8e]/90 via-[#4dd0e1]/70 to-[#dce775]/70"></div> */}
 				</div>
-			</header>Link
 
-			{/* WHY CHOOSE US */}
-			<section className="py-16">
-				<div className="max-w-7xl mx-auto px-6">
-					<h2 className="text-3xl font-bold mb-8 text-center">Why Choose Us</h2>
-					<div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
-						{features.map((f, i) => (
-							<div key={i} className="bg-slate-50 p-6 rounded-lg shadow hover:shadow-lg transition">
-								<f.icon className="w-8 h-8 text-teal-400 mb-4" />
-								<h4 className="font-semibold mb-2">{f.title}</h4>
-								<p className="text-sm text-gray-600">{f.desc}</p>
-							</div>
-						))}
+				{/* Content */}
+				<div className="max-w-5xl mx-auto relative z-10">
+					<h1 className="text-5xl md:text-7xl text-bold md:font-extrabold mb-6 drop-shadow-xl">
+						Modern Handle Kitchens
+					</h1>
+					<p className="text-lg md:text-2xl mb-10 opacity-90">
+						Where Style Meets Function – Transform your cooking space today
+					</p>
+					{/* <div className="flex gap-4 justify-center">
+						<button className="bg-white text-[#013d8e] px-7 py-3 rounded-full font-semibold shadow-lg hover:bg-[#f0f0f0]">
+							Explore Designs
+						</button>
+						<button className="bg-[#ffb400] text-[#013d8e] px-7 py-3 rounded-full font-semibold shadow-lg hover:bg-[#eaa200]">
+							Get Free Quote
+						</button>
+					</div> */}
+				</div>
+			</section>
+
+
+			{/* About Section */}
+			<section className="py-20 px-6 bg-white">
+				<div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 md:gap-16 items-center">
+					<img
+						src="/assets/img/galleryCategory/about.jpg"
+						alt="Handle Kitchen"
+						className="rounded-2xl shadow-lg transition"
+					/>
+					<div>
+						<h2 className="text-3xl md:text-4xl font-bold text-[#013d8e] mb-6">
+							What Are Handle Kitchens?
+						</h2>
+						<p className="text-lg mb-4">
+							Handle kitchens are modular kitchens with visible handles on cabinets and drawers. They are practical, durable, and budget-friendly compared to handle-less kitchens.
+						</p>
+						<ul className="space-y-3">
+							{[ "Durable & Long-lasting", "Affordable & Stylish", "Wide Range of Designs" ].map((point, i) => (
+								<li key={i} className="flex items-center gap-2 text-[#535353]">
+									<CheckCircle className="text-[#4dd0e1]" /> {point}
+								</li>
+							))}
+						</ul>
 					</div>
 				</div>
 			</section>
 
-			{/* PROCESS */}
+			{/* Features Section (New) */}
+			<section className="py-20 px-6 bg-gradient-to-r from-[#f9f9f9] to-[#eef2f3]">
+				<h2 className="text-3xl md:text-5xl font-bold text-center text-[#013d8e] mb-12">
+					Key Features
+				</h2>
+				<div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+					{[
+						{ title: "Elegant Designs", icon: <Sparkles className="w-10 h-10 text-[#ffb400]" /> },
+						{ title: "Durable Materials", icon: <Layers className="w-10 h-10 text-[#4dd0e1]" /> },
+						{ title: "Trusted Quality", icon: <ThumbsUp className="w-10 h-10 text-[#dce775]" /> },
+					].map((f, i) => (
+						<div key={i} className="bg-white p-8 rounded-2xl shadow hover:shadow-xl transition text-center">
+							<div className="flex justify-center mb-4">{f.icon}</div>
+							<h3 className="text-xl font-semibold text-[#013d8e]">{f.title}</h3>
+							<p className="text-sm text-gray-600 mt-2">
+								We deliver excellence with designs that fit your lifestyle.
+							</p>
+						</div>
+					))}
+				</div>
+			</section>
+
+			{/* Benefits Section */}
+			<section className="py-20 px-6 bg-[#f9f9f9]">
+				<h2 className="text-3xl md:text-5xl font-bold text-center text-[#333] mb-12">
+					Why Choose Handle Kitchens?
+				</h2>
+				<div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+					{[
+						"Easy to Use",
+						"Budget Friendly",
+						"Strong Grip",
+						"Variety of Styles",
+						"Custom Finishes",
+						"Family Friendly",
+					].map((item, i) => (
+						<div key={i} className="bg-white p-6 rounded-2xl shadow hover:shadow-xl transition text-center">
+							<CheckCircle className="w-10 h-10 text-[#4dd0e1] mb-4 mx-auto" />
+							<h3 className="text-xl font-semibold mb-2 text-[#013d8e]">{item}</h3>
+							<p className="text-sm text-gray-600">
+								{item} makes handle kitchens the best choice for your dream home.
+							</p>
+						</div>
+					))}
+				</div>
+			</section>
+
+			{/* Process Section */}
 			<section className="py-20 bg-gradient-to-b from-[#dce775]/20 via-white to-[#4dd0e1]/10 relative">
 				<div className="container mx-auto pb-8">
 					{/* Heading */}
@@ -166,83 +171,65 @@ export default function KitchensPremium() {
 					</div>
 				</div>
 			</section>
-
-			{/* MATERIALS */}
-			<section className="py-16">
-				<div className="max-w-7xl mx-auto px-6">
-					<h2 className="text-3xl font-bold mb-8 text-center">Premium Materials & Finishes</h2>
-					<div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
-						{materials.map((m, i) => (
-							<div key={i} className="rounded-lg overflow-hidden shadow hover:shadow-lg transition">
-								<img src={m.image} alt={m.name} className="h-48 w-full object-cover" />
-								<div className="p-4">
-									<h4 className="font-semibold">{m.name}</h4>
-									<p className="text-sm text-gray-600">{m.desc}</p>
-								</div>
-							</div>
-						))}
-					</div>
+			{/* Gallery Section */}
+			{/* <section className="py-20 px-6 bg-[#f9f9f9]">
+				<h2 className="text-3xl md:text-5xl font-bold text-center text-[#013d8e] mb-12">
+					Explore Our Kitchen Gallery
+				</h2>
+				<div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+					{[ 1, 2, 3, 4, 5, 6 ].map((img) => (
+						<div
+							key={img}
+							className="h-64 bg-gradient-to-br from-[#dce775] to-[#4dd0e1] rounded-2xl shadow-md flex items-center justify-center text-[#013d8e] font-semibold"
+						>
+							Image {img}
+						</div>
+					))}
 				</div>
-			</section>
-
-			{/* GALLERY FILTERS */}
-			<section id="gallery" className="py-16 bg-slate-50">
-				<div className="max-w-7xl mx-auto px-6">
-					<div className="flex flex-wrap gap-4 mb-6">
-						{/* <input value={query} onChange={e => setQuery(e.target.value)} placeholder="Search..." className="px-4 py-2 border rounded-full flex-1" />
-						<select value={sort} onChange={e => setSort(e.target.value)} className="px-4 py-2 border rounded-full">
-							<option value="featured">Featured</option>
-							<option value="price-asc">Price ↑</option>
-							<option value="price-desc">Price ↓</option>
-						</select> */}
-						{allTags.map(t => (
-							<button key={t} onClick={() => setActiveTag(t)} className={`px-4 py-2 rounded-full text-sm ${activeTag === t ? 'bg-teal-400 text-white' : 'bg-white border'}`}>{t}</button>
-						))}
-					</div>
-
-					<div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-						{filtered.map(p => (
-							<div key={p.id} className="bg-white rounded-lg shadow hover:shadow-lg transition overflow-hidden">
-								<img src={p.image} alt={p.name} className="h-64 w-full object-cover" />
-								<div className="p-4">
-									<h4 className="font-semibold">{p.name}</h4>
-									<p className="text-sm text-gray-500">{p.series}</p>
-									<div className="mt-2 flex justify-between items-center">
-										<span className="font-bold">₹{p.price.toLocaleString()}</span>
-										{p.featured && <span className="bg-teal-400 text-white px-2 py-1 rounded text-xs">Featured</span>}
-									</div>
-									{/* <button onClick={() => setSelectedProduct(p)} className="mt-4 w-full bg-black text-white py-2 rounded hover:bg-gray-800 transition">View</button> */}
-								</div>
-							</div>
-						))}
-					</div>
-				</div>
-			</section>
-
-			{/* TESTIMONIALS */}
-			<section className="py-16 bg-gradient-to-r from-teal-400 to-lime-300 text-white">
-				<div className="max-w-5xl mx-auto px-6 text-center">
-					<h2 className="text-3xl font-bold mb-8">What Our Clients Say</h2>
-					<blockquote className="italic text-lg">"{testimonials[ testiIndex ].quote}"</blockquote>
-					<p className="mt-4 font-semibold">— {testimonials[ testiIndex ].name}</p>
-					<div className="mt-3 flex justify-center gap-1">
-						{Array.from({ length: testimonials[ testiIndex ].rating }).map((_, i) => <Star key={i} className="w-5 h-5" />)}
-					</div>
-				</div>
-			</section>
-
-			<div className='my-12'>
-				<CTA />
+			</section> */}
+			<div className="py-12">
+				<OurDesign />
 			</div>
 
-			{/* FAQ + CONTACT */}
+			{/* Testimonials Section */}
+			<section className="py-20 px-6 bg-gradient-to-r from-[#4dd0e1] to-[#dce775] text-white">
+				<h2 className="text-3xl md:text-5xl font-bold text-center mb-12">
+					What Our Customers Say
+				</h2>
+				<div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+					{[ 1, 2, 3 ].map((t) => (
+						<div key={t} className="bg-white text-[#333] p-6 rounded-2xl shadow-lg">
+							<Star className="w-6 h-6 text-[#ffb400] mb-2" />
+							<p className="mb-4 italic">
+								“Handle Kitchens completely changed my home – stylish, modern, and functional!”
+							</p>
+							<h4 className="font-semibold">Happy Customer {t}</h4>
+						</div>
+					))}
+				</div>
+			</section>
+
+			{/* Callout Banner (New) */}
+			{/* <section className="py-16 px-6 bg-[#ffb400] text-center text-[#013d8e]">
+				<h2 className="text-2xl md:text-4xl font-bold mb-4">
+					Limited Time Offer: Get Upto 20% Off on Modular Kitchens!
+				</h2>
+				<p className="mb-6 text-lg">
+					Book your consultation this month and enjoy exclusive discounts.
+				</p>
+				<button className="bg-white text-[#013d8e] px-7 py-3 rounded-full font-semibold shadow hover:bg-gray-100">
+					Claim Offer Now
+				</button>
+			</section> */}
+
+			{/* FAQ Section */}
 			<section id="contact" className="py-16">
 				<div className="container mx-auto">
 					<div>
 						<h3 className="text-2xl font-bold mb-6">Frequently Asked Questions</h3>
 						{faqs.map((f, i) => (
 							<div key={i} className="border rounded-lg mb-2">
-								<button className="w-full p-4 flex justify-between" onClick={() => setFaqOpen(faqOpen === i ? null : i)}>
+								<button className="text-start w-full p-4 flex justify-between" onClick={() => setFaqOpen(faqOpen === i ? null : i)}>
 									<span>{f.q}</span>
 									<span>{faqOpen === i ? '-' : '+'}</span>
 								</button>
@@ -253,7 +240,47 @@ export default function KitchensPremium() {
 				</div>
 			</section>
 
+			{/* Final CTA Section */}
+			<section className="py-20 px-6 bg-gradient-to-r from-[#013d8e] to-[#4dd0e1] text-white text-center">
+				<h2 className="text-3xl md:text-5xl font-bold mb-6">
+					Ready to Transform Your Kitchen?
+				</h2>
+				<p className="max-w-2xl mx-auto mb-8">
+					From stylish handles to modern layouts, we bring your dream kitchen to life. Let’s build something beautiful together.
+				</p>
+				<div className="flex gap-4 justify-center">
+					<button className="bg-[#ffb400] text-[#013d8e] px-6 py-3 rounded-full font-semibold shadow-lg hover:bg-[#eaa200]">
+						Book Free Consultation
+					</button>
+					{/* <button className="bg-white text-[#013d8e] px-6 py-3 rounded-full font-semibold shadow-lg hover:bg-gray-200">
+						View Catalog
+					</button> */}
+				</div>
+			</section>
 
-		</div >
-	)
+			{/* Contact Section */}
+			{/* <section className="py-20 px-6 bg-[#f9f9f9] text-center">
+				<h2 className="text-3xl md:text-5xl font-bold text-[#013d8e] mb-6">
+					Contact Us
+				</h2>
+				<p className="mb-8 max-w-2xl mx-auto">
+					Get in touch for design consultations, catalogs, or queries. We are here to help you create the kitchen you deserve.
+				</p>
+				<div className="flex flex-col md:flex-row justify-center gap-6 max-w-3xl mx-auto">
+					<div className="flex items-center gap-3 bg-white p-4 rounded-2xl shadow">
+						<Phone className="text-[#4dd0e1]" />
+						<span>+91 98765 43210</span>
+					</div>
+					<div className="flex items-center gap-3 bg-white p-4 rounded-2xl shadow">
+						<Mail className="text-[#4dd0e1]" />
+						<span>info@handlekitchens.com</span>
+					</div>
+					<div className="flex items-center gap-3 bg-white p-4 rounded-2xl shadow">
+						<MapPin className="text-[#4dd0e1]" />
+						<span>Mumbai, India</span>
+					</div>
+				</div>
+			</section> */}
+		</div>
+	);
 }
