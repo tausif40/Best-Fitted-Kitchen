@@ -2,56 +2,110 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 function Footer() {
-
 	const socialLink = [
-		{ name: 'facebook', icon: '/assets/img/icons/facebook.png', link: 'https://www.facebook.com/BestfittedWardrobeltd' },
-		{ name: 'twitter', icon: '/assets/img/icons/twitter.png', link: 'https://x.com/' },
-		{ name: 'google', icon: '/assets/img/icons/google.png', link: '' },
-		{ name: 'instagram', icon: '/assets/img/icons/linkedin.png', link: 'https://www.instagram.com/bestfittedwardrobe/' },
+		{ name: 'Facebook', link: 'https://www.facebook.com/BestfittedWardrobeltd' },
+		{ name: 'Twitter', link: 'https://x.com/' },
+		{ name: 'Google', link: '' },
+		{ name: 'Instagram', link: 'https://www.instagram.com/bestfittedwardrobe/' },
 	]
 
+	const navLinks = [
+		{ name: 'Home', link: '/' },
+		{ name: 'About us', link: '/about-us' },
+		{ name: 'Wardrobes', link: '/Wardrobes' },
+		{ name: 'Sliding wardrobes', link: '/sliding-wardrobes' },
+		{ name: 'Built in wardrobes', link: '/built-in-wardrobes' },
+		{ name: 'Fitted Kitchens', link: '/built-in-wardrobes' },
+		{ name: 'Sale', link: '/sale' },
+		{ name: 'Gallery', link: '/gallery' },
+		{ name: 'Contact us', link: '/contact' },
+		// { name: 'Terms & Conditions', link: '/terms-conditions' },
+		// { name: 'Payment and Cancellation Terms', link: '/payment-terms-and-conditions' },
+	]
 
 	return (
-		<>
-			<footer className="bg-mySky text-white">
-				<div className="container mx-auto px-4 py-8">
-					<div className="flex justify-center space-x-6 mb-6">
-						{socialLink?.map((social, index) => (
-							<Link
-								key={index}
-								to={`${social?.link}`}
-								className="w-12 h-12 p-3 rounded-full bg-white text-[#4DD4D4] flex items-center justify-center"
-								target='_blank'
-							>
-								<img src={social?.icon} alt="icon" />
-								<span className="sr-only">{social?.name}</span>
-							</Link>
-						))}
+		<footer className="bg-white pt-12 pb-8 border-t">
+			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+				<div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+					{/* Company Info */}
+					<div>
+						<Link to="/" className="flex-shrink-0">
+							<img
+								src="/assets/img/logos/icon.png"
+								alt="Best Fitted Wardrobe"
+								className="w-36 lg:w-36"
+							/>
+						</Link>
+						<p className="text-gray-600 my-4">
+							Bringing you the finest in wardrobe and kitchen design solutions.
+						</p>
+						<div className="mt-4">
+							<a href="tel:01708756789" className="block text-gray-700 hover:text-teal-500">
+								01708 756789
+							</a>
+							<a href="tel:07961070327" className="block text-gray-700 hover:text-teal-500">
+								07961 070327
+							</a>
+						</div>
 					</div>
-					<nav className="flex justify-center flex-wrap gap-y-3 text-sm mb-4 lg:px-20">
-						<Link to="/" className="px-4 border-r hover:text-pretty">HOME</Link>
-						<Link to="/about-us" className="px-4 border-r">ABOUT US</Link>
-						<Link to="/Wardrobes" className="px-4 border-r">WARDROBES</Link>
-						<Link to="/sliding-wardrobes" className="px-4 border-r">SLIDING WARDROBES</Link>
-						<Link to="/built-in-wardrobes" className="px-4 border-r">BUILT IN WARDROBES</Link>
-						<Link to="/built-in-wardrobes" className="px-4 border-r">FITTED KITCHENS</Link>
-						<Link to="/sale" className="px-4 border-r">SALE</Link>
-						<Link to="/gallery" className="px-4 border-r">GALLERY</Link>
-						<Link to="/contact" className="px-4 border-r">CONTACT US</Link>
-						<Link to="/terms-conditions" className="px-4 border-r">Terms & Conditions</Link>
-						<Link to="payment-terms-and-conditions" className="px-4">Payment and Cancellation Terms</Link>
-					</nav>
-					<div className='flex justify-center mt-4 text-xl font-semibold'>
-						<a href="tel:01708756789" className="text-white hover:underline pr-3 border-r-2">01708756789</a>
-						<a href="tel:07961070327" className="text-white hover:underline pl-3">07961070327</a>
+
+					{/* Categories / Navigation */}
+					<div>
+						<h4 className="font-bold text-gray-900 mb-4">Quick Links</h4>
+						<ul className="space-y-2 text-gray-600">
+							{navLinks.map((item, i) => (
+								<li key={i}>
+									<Link to={item.link} className="hover:text-teal-500 capitalize">
+										{item.name}
+									</Link>
+								</li>
+							))}
+						</ul>
 					</div>
-					<p className="text-center text-sm mt-8 text-heading">
-						© COPYRIGHT © 2025 BEST FITTED WARDROBE <br />
-						ALL RIGHTS RESERVED
-					</p>
+
+					{/* Popular Products (re-using some main links) */}
+					<div>
+						<h4 className="font-bold text-gray-900 mb-4">Popular Products</h4>
+						<ul className="space-y-2 text-gray-600">
+							<li><Link to="/Wardrobes" className="hover:text-teal-500">Wardrobes</Link></li>
+							<li><Link to="/sliding-wardrobes" className="hover:text-teal-500">Sliding Wardrobes</Link></li>
+							<li><Link to="/built-in-wardrobes" className="hover:text-teal-500">Built-in Wardrobes</Link></li>
+							<li><Link to="/sale" className="hover:text-teal-500">Sale Items</Link></li>
+						</ul>
+					</div>
+
+					{/* Social Links */}
+					<div>
+						<h4 className="font-bold text-gray-900 mb-4">Follow Us</h4>
+						<ul className="space-y-2 text-gray-600">
+							{socialLink.map((social, i) => (
+								<li key={i}>
+									<a href={social.link} target="_blank" rel="noreferrer" className="hover:text-teal-500">
+										{social.name}
+									</a>
+								</li>
+							))}
+						</ul>
+					</div>
 				</div>
-			</footer >
-		</>
+
+				{/* Bottom Bar */}
+				<div className="flex flex-col md:flex-row gap-4 justify-between items-center border-t mt-6 pt-6 text-gray-600">
+					<p className='text-xs md:text-sm'>
+						© 2025 BEST FITTED KITCHEN. All rights reserved.
+					</p>
+
+					<div className='flex gap-4 text-xs'>
+						<Link href='/terms-conditions' className='hover:text-teal-500'>
+							<p>Terms & Conditions</p>
+						</Link>
+						<Link href='/payment-terms-and-conditions' className='hover:text-teal-500'>
+							<p>Payment and Cancellation Terms</p>
+						</Link>
+					</div>
+				</div>
+			</div>
+		</footer>
 	)
 }
 

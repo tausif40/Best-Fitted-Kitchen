@@ -44,12 +44,15 @@ export default function TestimonialSwiper() {
 				</p>
 			</div>
 
-			<div className="relative px-12">
+			<div className="relative mx-4 px-6">
 				{/* Swiper */}
 				<Swiper
 					modules={[ Navigation, Autoplay ]}
 					spaceBetween={20}
-					slidesPerView={2} // ✅ show 2 slides at a time
+					breakpoints={{
+						768: { slidesPerView: 1 },
+						1024: { slidesPerView: 2 },
+					}}
 					autoplay={{ delay: 4000, disableOnInteraction: false, pauseOnMouseEnter: true }}
 					navigation={{
 						nextEl: ".next-btn",
@@ -60,7 +63,7 @@ export default function TestimonialSwiper() {
 				>
 					{testimonials.map((t, i) => (
 						<SwiperSlide key={i}>
-							<div className="bg-white rounded-2xl border p-6 h-[200px]">
+							<div className="bg-white rounded-2xl border p-6">
 								<img src="/assets/img/icons/colon.png" alt="" className="h-4 mb-4" />
 								<p className="text-gray-700 mb-4">{t.text}</p>
 								<div className="flex items-center justify-between mt-4">

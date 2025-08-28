@@ -38,41 +38,42 @@ const Hero = () => {
 				</div>
 			</div>
 
-			<div className="absolute flex gap-16 text-sm text-gray-600 py-6 px-12 shadow-md rounded-full border-t bottom-10 bg-white">
+			<div className="absolute w-[95%] lg:w-auto flex flex-wrap lg:flex-row items-center justify-between gap-6 lg:gap-16 text-sm text-gray-600 py-6 px-12 shadow-md rounded-[4rem] sm:rounded-full border-t bottom-0 md:bottom-8 lg:bottom-10 bg-white">
 				<div>
-					<h5 className='font-semibold mb-2'>Comfort</h5>
+					<h5 className='font-semibold mb-2 min-w-max'>Comfort</h5>
 					<div className="flex items-center gap-2">
 						<img src="/assets/img/icons/yoga.png" alt="" />
-						<p>Relax with ease</p>
+						<p className='min-w-max'>Relax with ease</p>
 					</div>
 				</div>
 				<div>
-					<h5 className='font-semibold mb-2'>Quality Assurance</h5>
+					<h5 className='font-semibold mb-2 min-w-max'>Quality Assurance</h5>
 					<div className="flex items-center gap-2">
 						<img src="/assets/img/icons/vector.png" alt="" />
-						<p>Trusted quality</p>
+						<p className='min-w-max'>Trusted quality</p>
 					</div>
 				</div>
 				<div>
-					<h5 className='font-semibold mb-2'>Free Shipping</h5>
+					<h5 className='font-semibold mb-2 min-w-max'>Free Shipping</h5>
 					<div className="flex items-center gap-2">
 						<img src="/assets/img/icons/box.png" alt="" />
-						<p>No-Cost delivery</p>
+						<p className='min-w-max'>No-Cost delivery</p>
 					</div>
 				</div>
-
-				<div className='h-12 w-px bg-slate-200'></div>
-				<div>
-					<h5 className='font-semibold mb-2'>Secure checkout</h5>
-					<div className="flex items-center gap-2">
-						<img src="/assets/img/icons/verified.png" alt="" />
-						<p>Secure payment</p>
+				<div className='h-12 w-px bg-slate-200 hidden lg:block'></div>
+				<div className='w-full flex gap-12 justify-center'>
+					<div>
+						<h5 className='font-semibold mb-2 min-w-max'>Secure checkout</h5>
+						<div className="flex items-center gap-2">
+							<img src="/assets/img/icons/verified.png" alt="" />
+							<p className='min-w-max'>Secure payment</p>
+						</div>
 					</div>
-				</div>
 
-				<button className='text-gray-700 hover:text-mySky flex items-center border-2 border-gray-500 px-6 h-12 rounded-full'>
-					See More
-				</button>
+					<button className='text-gray-700 hover:text-mySky flex items-center border-2 border-gray-500 px-6 h-12 rounded-full min-w-max'>
+						See More
+					</button>
+				</div>
 			</div>
 
 		</section>

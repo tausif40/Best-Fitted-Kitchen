@@ -34,7 +34,7 @@ function OurDesign() {
 	return (
 		<>
 			<section className="mb-10 m-auto">
-				<div className="container mx-auto">
+				<div className="container">
 					<div className='flex justify-center items-center flex-col mb-12 space-y-4'>
 						<p className='text-red-500 bg-gray-200 font-semibold text-xl rounded-lg py-2 px-4 text-center'>Check Our Collection</p>
 						<h2 className="text-4xl text-gray-800 font-bold text-center">Our Feature Gallery</h2>
@@ -42,7 +42,7 @@ function OurDesign() {
 					</div>
 
 					<div className="">
-						<div className='grid grid-cols-7 gap-6 mb-6'>
+						<div className='grid grid-cols-7 gap-2 md:gap-4 lg:gap-6 mb-2 md:mb-4 lg:mb-6'>
 							<img src='/assets/img/home/gallery1.png' alt='img' className='object-cover w-full h-full col-span-2' />
 							<img src='/assets/img/home/gallery2.png' alt='img' className='object-cover w-full h-full col-span-2' />
 							<img src='/assets/img/home/gallery3.png' alt='img' className='object-cover w-full h-full col-span-3' />
