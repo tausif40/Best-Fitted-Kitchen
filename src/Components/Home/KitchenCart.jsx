@@ -112,10 +112,10 @@ function KitchenCart() {
 		<>
 			<section id="gallery" className="py-16">
 				<div className="container mx-auto px-6">
-					<div className="flex justify-between gap-4 mb-8">
-						<div className='space-y-3'>
-							<p className='text-red-500 bg-gray-200 font-semibold text-xl rounded-lg py-2 w-56 text-center'>Check Out Product</p>
-							<p className='text-2xl font-bold'>Crafted with excellent material</p>
+					<div className="flex flex-col lg:flex-row justify-between gap-8 lg:gap-4 mb-8">
+						<div className='space-y-3 flex flex-col items-center lg:items-start lg:justify-end'>
+							<p className='text-red-500 bg-gray-200 font-semibold text-xl rounded-lg py-2 px-6 truncate max-w-min'>Check Out Product</p>
+							<p className='text-2xl font-bold '>Crafted with excellent material</p>
 						</div>
 						<div className='flex items-center flex-wrap gap-3'>
 							{allTags.map(t => (

@@ -14,7 +14,9 @@ function HomePage() {
 	return (
 		<>
 			<Hero />
-			<KitchenCart />
+			<div className='mt-32 sm:mt-10 md:mt-0'>
+				<KitchenCart />
+			</div>
 
 			<section className="container pb-16">
 				<div className="flex flex-col lg:flex-row gap-8 justify-between items-center px-4 sm:px-6 lg:px-8 py-4 bg-gray-100 rounded-md">

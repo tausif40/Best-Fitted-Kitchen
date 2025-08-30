@@ -8,6 +8,28 @@ const processSteps = [
 	{ icon: Hammer, title: 'Manufacturing', desc: 'Custom build with premium materials and attention to detail.', extra: 'Every unit is crafted with precision and durability in mind.' },
 	{ icon: Truck, title: 'Delivery & Installation', desc: 'Hassle-free installation by our trained professionals.', extra: 'We ensure everything is perfectly fitted and ready for use.' }
 ];
+
+const testimonial = [
+	{
+		name: "Emma L., Colchester",
+		text: "We recently had our new fitted kitchen in Manchester designed and installed by Best Fitted Kitchens UK, and I couldn’t be happier with the result. The designers really understood our style and created a modern kitchen that is both practical and elegant. The quality of the fitted units and worktops is excellent, and the whole process was smooth from start to finish. If you’re looking for modern fitted kitchens in the UK, this company is a brilliant choice.",
+		avatar: "https://i.pravatar.cc/100?img=3",
+		rating: 5,
+	},
+	{
+		name: "James & Rebecca T., Romford",
+		text: "We chose Best Fitted Kitchens after researching several companies in London, and we’re so glad we did. Their team gave us fantastic ideas for maximising space, and the installation was quick and hassle-free. The finished result is a stylish, high-quality bespoke fitted kitchen that has completely transformed our home. Anyone looking for custom fitted kitchens in the UK should definitely check them out!",
+		avatar: "https://i.pravatar.cc/100?img=5",
+		rating: 5,
+	},
+	{
+		name: "Sarah P., Newbury Park",
+		text: "From the initial consultation to the final installation, the experience was excellent. The design team helped us create a modern fitted kitchen in Leeds with clever storage solutions and a sleek look. The attention to detail and craftsmanship are second to none. I would recommend Best Fitted Kitchens UK to anyone searching for high-quality fitted kitchens across the UK.",
+		avatar: "https://i.pravatar.cc/100?img=8",
+		rating: 5,
+	},
+]
+
 const faqs = [
 	{ q: 'Do you provide free on-site consultation?', a: 'Yes — we provide a complimentary initial consultation to understand your needs and space.' },
 	{ q: 'What is the typical project timeline?', a: 'Most kitchens complete within 4–8 weeks depending on scope and custom items.' },
@@ -36,7 +58,7 @@ export default function HandlerKitchens() {
 				</div>
 
 				{/* Content */}
-				<div className="max-w-5xl mx-auto relative z-10">
+				<div className="container mx-auto relative z-10">
 					<h1 className="text-5xl md:text-7xl text-bold md:font-extrabold mb-6 drop-shadow-xl">
 						Modern Handle Kitchens
 					</h1>
@@ -57,7 +79,7 @@ export default function HandlerKitchens() {
 
 			{/* About Section */}
 			<section className="py-20 px-6 bg-white">
-				<div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 md:gap-16 items-center">
+				<div className="container mx-auto grid md:grid-cols-2 gap-8 md:gap-16 items-center">
 					<img
 						src="/assets/img/galleryCategory/about.jpg"
 						alt="Handle Kitchen"
@@ -196,14 +218,28 @@ export default function HandlerKitchens() {
 				<h2 className="text-3xl md:text-5xl font-bold text-center mb-12">
 					What Our Customers Say
 				</h2>
-				<div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-					{[ 1, 2, 3 ].map((t) => (
+				<div className="grid md:grid-cols-3 gap-8 container mx-auto">
+					{/* {testimonial.map((t) => (
 						<div key={t} className="bg-white text-[#333] p-6 rounded-2xl shadow-lg">
 							<Star className="w-6 h-6 text-[#ffb400] mb-2" />
 							<p className="mb-4 italic">
 								“Handle Kitchens completely changed my home – stylish, modern, and functional!”
 							</p>
 							<h4 className="font-semibold">Happy Customer {t}</h4>
+						</div>
+					))} */}
+					{testimonial.map((t, i) => (
+						<div key={i} className="bg-white text-[#333] p-6 rounded-2xl shadow-lg flex flex-col items-center">
+							<img src={t.avatar} alt={t.name} className="w-16 h-16 rounded-full mb-4 shadow" />
+							<div className="flex items-center mb-2">
+								{Array.from({ length: Math.floor(t.rating) }).map((_, idx) => (
+									<Star key={idx} className="w-6 h-6 text-[#ffb400]" />
+								))}
+								{t.rating % 1 !== 0 && <Star className="w-6 h-6 text-[#ffb400] opacity-50" />}
+							</div>
+							<p className="mb-4 italic text-center">{t.text}</p>
+							<h4 className="font-semibold mb-1">{t.name}</h4>
+							{/* <pre className="bg-gray-100 text-xs text-left p-2 rounded w-full overflow-x-auto mt-2">{JSON.stringify(t, null, 2)}</pre> */}
 						</div>
 					))}
 				</div>
