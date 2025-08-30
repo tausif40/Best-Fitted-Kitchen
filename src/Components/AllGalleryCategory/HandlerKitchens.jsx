@@ -31,11 +31,10 @@ const testimonial = [
 ]
 
 const faqs = [
-	{ q: 'Do you provide free on-site consultation?', a: 'Yes — we provide a complimentary initial consultation to understand your needs and space.' },
-	{ q: 'What is the typical project timeline?', a: 'Most kitchens complete within 4–8 weeks depending on scope and custom items.' },
-	{ q: 'Do you offer modular and custom cabinetry?', a: 'Both modular systems and fully custom cabinetry options are available.' },
-	{ q: 'Can you work with small kitchen spaces?', a: 'Absolutely! We specialize in smart designs for compact homes.' },
-	{ q: 'Do you provide warranty?', a: 'We offer a 1-year installation warranty and support for all hardware.' }
+	{ q: 'How much does a fitted kitchen cost in the UK?', a: 'Prices start from around £5,000, depending on size, design, and finishes.' },
+	{ q: 'Will a fitted kitchen increase my home’s value?', a: 'Yes — a professionally designed fitted kitchen can increase your home’s value by up to 60%.' },
+	{ q: 'How long does a kitchen installation take?', a: 'Most installations take 2–4 weeks, depending on complexity.' },
+	{ q: 'Do you install kitchens across the UK?', a: 'Yes — we serve homeowners nationwide, including London, Manchester, Leeds, and Birmingham.' },
 ]
 
 export default function HandlerKitchens() {
@@ -279,10 +278,10 @@ export default function HandlerKitchens() {
 			{/* Final CTA Section */}
 			<section className="py-20 px-6 bg-gradient-to-r from-[#013d8e] to-[#4dd0e1] text-white text-center">
 				<h2 className="text-3xl md:text-5xl font-bold mb-6">
-					Ready to Transform Your Kitchen?
+					Book Your Free Kitchen Design Consultation
 				</h2>
 				<p className="max-w-2xl mx-auto mb-8">
-					From stylish handles to modern layouts, we bring your dream kitchen to life. Let’s build something beautiful together.
+					Ready to transform your home? Get started with a free, no-obligation consultation. Our designers will listen to your needs, share ideas, and create a plan for your perfect fitted kitchen.
 				</p>
 				<div className="flex gap-4 justify-center">
 					<button className="bg-[#ffb400] text-[#013d8e] px-6 py-3 rounded-full font-semibold shadow-lg hover:bg-[#eaa200]">

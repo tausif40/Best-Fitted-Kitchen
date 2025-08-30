@@ -1,18 +1,49 @@
 import React from 'react'
 import Hero from './Hero'
-import Services from '../Pages/Services'
-import { Phone } from 'lucide-react';
 import OurDesign from './OurDesign';
-import CTA from '../CTA/CTA';
-import { FaCheckCircle, FaSyncAlt } from 'react-icons/fa';
-import { GiStarShuriken } from "react-icons/gi";
-import { FaStar, FaHeart, FaCog, FaTachometerAlt } from 'react-icons/fa';
 import KitchenCart from './KitchenCart';
 import Testimonial from '../Testimonial/Testimonial';
+import { Helmet } from "react-helmet-async";
 
 function HomePage() {
 	return (
 		<>
+			<Helmet>
+				<title>Best Fitted Kitchens UK | Modern & Bespoke Designs</title>
+				<meta
+					name="description"
+					content="Transform your home with bespoke fitted kitchens in the UK. Add up to 60% to your property value with modern, luxury, and space-saving designs."
+				/>
+				<link rel="canonical" href="https://best-fitted-kitchen.vercel.app/" />
+				<meta property="og:title" content="Best Fitted Kitchens UK" />
+				<meta
+					property="og:description"
+					content="Modern, bespoke fitted kitchens designed to add value to your home."
+				/>
+				<meta property="og:type" content="website" />
+
+				{/* JSON-LD structured data */}
+				<script type="application/ld+json">
+					{JSON.stringify({
+						"@context": "https://schema.org",
+						"@type": "LocalBusiness",
+						name: "Best Fitted Kitchens UK",
+						url: "https://best-fitted-kitchen.vercel.app/",
+						image: "https://best-fitted-kitchen.vercel.app/images/kitchen.jpg",
+						address: {
+							"@type": "PostalAddress",
+							streetAddress: "123 Kitchen Lane",
+							addressLocality: "London",
+							addressRegion: "England",
+							postalCode: "W1A 1AA",
+							addressCountry: "UK",
+						},
+						telephone: "+44 20 1234 5678",
+						priceRange: "£££",
+					})}
+				</script>
+			</Helmet>
+
 			<Hero />
 			<div className='mt-32 sm:mt-10 md:mt-0'>
 				<KitchenCart />
