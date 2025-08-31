@@ -39,8 +39,8 @@ const Hero = () => {
 			</div>
 
 			{/* md:absolute w-[95%] lg:w-auto flex flex-wrap lg:flex-row items-center -md:justify-between gap-6 lg:gap-16 text-sm text-gray-600 py-6 px-12 shadow-md rounded-[4rem] sm:rounded-full border-t bottom-0 md:bottom-8 lg:bottom-10 bg-white */}
-			<div className="absolute w-[93%] sm:w-[94%]  md:w-[95%] flex flex-col lg:flex-row items-center md:justify-between gap-6 lg:gap-16 text-sm text-gray-600 py-6 px-12 shadow-md rounded-[4rem] xs:rounded-full border-t -bottom-32 sm:-bottom-8 md:bottom-8 lg:bottom-10 bg-white">
-				<div className='grid px-2 xs:px-6 sm:px-12 md:px-6 grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12 w-full'>
+			<div className="absolute w-[93%] sm:w-[94%]  md:w-[95%] lg:w-auto flex flex-col lg:flex-row items-center md:justify-between gap-6 lg:gap-16 text-sm text-gray-600 py-6 px-12 shadow-md rounded-[4rem] xs:rounded-full border-t -bottom-32 sm:-bottom-8 md:bottom-8 lg:bottom-10 bg-white">
+				<div className='grid px-2 xs:px-6 sm:px-12 md:px-6 lg:px-0 grid-cols-2 md:grid-cols-4 gap-8 lg:gap-10 w-full'>
 					<div>
 						<h5 className='font-semibold mb-2 min-w-max'>Comfort</h5>
 						<div className="flex items-center gap-2">

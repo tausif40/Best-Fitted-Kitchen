@@ -68,8 +68,8 @@ function HomePage() {
 			<section className="container py-12">
 				<div className="flex flex-col lg:flex-row gap-8 justify-between items-center px-4 sm:px-6 lg:px-8 py-4 bg-gray-100 rounded-md">
 					<div>
-						<h2 className="text-3xl font-bold text-gray-900 mb-4">Add 60% to your home's value</h2>
-						<p className="text-gray-600 max-w-2xl">A new kitchen can significantly increase the value of your home making it an investment in your future as well as your present comfort.</p>
+						<h2 className="text-3xl font-bold text-gray-900 mb-4">Add Up to 60% to Your Home’s Value</h2>
+						<p className="text-gray-600 max-w-2xl">A new fitted kitchen isn’t just about comfort — it’s an <b>investment in your property.</b> Research shows that a professionally designed <b>fitted kitchen can add up to 60%</b> to your home’s resale value. With Best Fitted Kitchens UK, you get both <b>style today</b> and <b>value for tomorrow.</b></p>
 					</div>
 					<button className="bg-mySky text-white px-8 py-3 rounded-full transition-colors">
 						Book a free appointment
