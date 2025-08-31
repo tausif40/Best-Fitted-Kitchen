@@ -13,7 +13,7 @@ const testimonial = [
 	{
 		name: "Emma L., Colchester",
 		text: "We recently had our new fitted kitchen in Manchester designed and installed by Best Fitted Kitchens UK, and I couldn’t be happier with the result. The designers really understood our style and created a modern kitchen that is both practical and elegant. The quality of the fitted units and worktops is excellent, and the whole process was smooth from start to finish. If you’re looking for modern fitted kitchens in the UK, this company is a brilliant choice.",
-		avatar: "https://i.pravatar.cc/100?img=3",
+		avatar: "/assets/placeholder.svg",
 		rating: 5,
 	},
 	{
@@ -285,7 +285,7 @@ export default function HandlerKitchens() {
 				</p>
 				<div className="flex gap-4 justify-center">
 					<button className="bg-[#ffb400] text-[#013d8e] px-6 py-3 rounded-full font-semibold shadow-lg hover:bg-[#eaa200]">
-						Book Free Consultation
+						Book Your Free Consultation Today
 					</button>
 					{/* <button className="bg-white text-[#013d8e] px-6 py-3 rounded-full font-semibold shadow-lg hover:bg-gray-200">
 						View Catalog

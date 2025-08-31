@@ -9,19 +9,19 @@ const testimonials = [
 	{
 		name: "Michael Roberts",
 		text: "I recently purchased a beautiful dining table and it has completely transformed our dining area. The craftsmanship and attention to detail are truly remarkable.",
-		avatar: "https://i.pravatar.cc/100?img=3",
+		avatar: "/assets/placeholder.svg",
 		rating: 4.5,
 	},
 	{
 		name: "Marta Brown",
 		text: "My experience has been consistently outstanding. From the bedroom to the living room, they have a wide range of stylish and well-crafted furniture.",
-		avatar: "https://i.pravatar.cc/100?img=5",
+		avatar: "/assets/placeholder.svg",
 		rating: 5,
 	},
 	{
 		name: "John Smith",
 		text: "I am beyond impressed with the quality of the recliner chair I bought. The comfort it provides is beyond compare, and the design perfectly complements our living room.",
-		avatar: "https://i.pravatar.cc/100?img=8",
+		avatar: "/assets/placeholder.svg",
 		rating: 4.5,
 	},
 	{
