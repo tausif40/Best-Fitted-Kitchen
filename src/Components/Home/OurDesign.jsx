@@ -36,7 +36,9 @@ function OurDesign() {
 			<section className="mb-10 m-auto">
 				<div className="container">
 					<div className='flex justify-center items-center flex-col mb-12 space-y-4'>
-						<p className='text-red-500 bg-gray-200 font-semibold text-xl rounded-lg py-2 px-4 text-center'>Check Our Collection</p>
+						<Link to='/gallery'>
+							<p className='text-red-500 bg-gray-200 font-semibold text-xl rounded-lg py-2 px-4 text-center'>Check Our Collection</p>
+						</Link>
 						<h2 className="text-4xl text-gray-800 font-bold text-center">Our Feature Gallery</h2>
 						<p className="text-text text-center">Explore our Gallery of Inspiring Design</p>
 					</div>
@@ -62,7 +64,7 @@ function OurDesign() {
 						</Link>
 					</div> */}
 				</div>
-			</section>
+			</section >
 		</>
 	)
 }

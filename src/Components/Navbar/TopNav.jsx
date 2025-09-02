@@ -5,10 +5,10 @@ import { FaXTwitter } from "react-icons/fa6";
 import { IoLogoGoogleplus } from "react-icons/io";
 import { Link, useLocation } from 'react-router-dom';
 import { Mail, Phone, Search, Menu } from 'lucide-react';
-import ClaimDesign from '../ClaimDesign/ClaimDesign';
+
 
 function TopNav() {
-	const [ modalOpen, setModalOpen ] = useState(false);
+
 
 	const headerData = {
 		contactInfo: { phone: "01708 7 56789", email: "info@bestfittedwardrobe.co.uk" },
@@ -22,7 +22,7 @@ function TopNav() {
 
 	return (
 		<>
-			<ClaimDesign isOpen={modalOpen} onClose={() => setModalOpen(false)} />
+
 			<nav className="bg-gray-50 py-2">
 				<div className="container max-sm:pl-2 max-sm:pr-0 flex justify-between gap-10">
 

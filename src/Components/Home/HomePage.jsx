@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Hero from './Hero'
 import OurDesign from './OurDesign';
 import KitchenCart from './KitchenCart';
 import Testimonial from '../Testimonial/Testimonial';
 import { Helmet } from "react-helmet-async";
+import ClaimDesign from '../ClaimDesign/ClaimDesign';
 
 function HomePage() {
+	const [ modalOpen, setModalOpen ] = useState(false);
+
 	return (
 		<>
 			<Helmet>
@@ -44,6 +47,7 @@ function HomePage() {
 				</script>
 			</Helmet>
 
+			<ClaimDesign isOpen={modalOpen} onClose={() => setModalOpen(false)} />
 			<Hero />
 			<div className='mt-32 sm:mt-10 md:mt-0'>
 				<KitchenCart />
@@ -55,7 +59,7 @@ function HomePage() {
 						<h2 className="text-3xl font-bold text-gray-900 mb-4">Secure your free design appointment</h2>
 						<p className="text-gray-600">Get expert guidance and design consultation for your dream kitchen</p>
 					</div>
-					<button className="bg-mySky text-white px-8 py-3 rounded-full transition-colors">
+					<button className="bg-mySky text-white px-8 py-3 rounded-full transition-colors" onClick={() => setModalOpen(true)}>
 						Book a free appointment
 					</button>
 				</div>
@@ -71,7 +75,7 @@ function HomePage() {
 						<h2 className="text-3xl font-bold text-gray-900 mb-4">Add Up to 60% to Your Home’s Value</h2>
 						<p className="text-gray-600 max-w-2xl">A new fitted kitchen isn’t just about comfort — it’s an <b>investment in your property.</b> Research shows that a professionally designed <b>fitted kitchen can add up to 60%</b> to your home’s resale value. With Best Fitted Kitchens UK, you get both <b>style today</b> and <b>value for tomorrow.</b></p>
 					</div>
-					<button className="bg-mySky text-white px-8 py-3 rounded-full transition-colors">
+					<button className="bg-mySky text-white px-8 py-3 rounded-full transition-colors" onClick={() => setModalOpen(true)}>
 						Book a free appointment
 					</button>
 				</div>
@@ -112,7 +116,7 @@ function HomePage() {
 							<input
 								type="email"
 								placeholder="Your email address here"
-								className="flex-1 md:w-80 px-4 py-3 rounded-l-full border-0 focus:outline-none focus:ring-2 focus:ring-teal-500"
+								className="flex-1 md:w-80 px-4 py-3 rounded-l-full border-0 focus:outline-none focus:ring-2 focus:ring-orange-500"
 							/>
 							<button className="bg-orange-500 text-white px-4 md:px-8 py-3 rounded-r-full hover:bg-orange-600 transition-colors">
 								Subscribe
