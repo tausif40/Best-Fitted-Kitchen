@@ -80,7 +80,7 @@ const Hero = () => {
 						</div>
 					</div>
 
-					<button className='text-gray-700 hover:text-mySky flex items-center border-2 border-gray-500 px-6 h-12 rounded-full min-w-max'>
+					<button className='text-gray-700 hover:text-mySky flex items-center border-2 border-gray-500 px-6 h-12 rounded-full min-w-max' onClick={() => setModalOpen(true)}>
 						See More
 					</button>
 				</div>
